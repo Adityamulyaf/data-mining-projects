@@ -1,0 +1,5 @@
+Saat ini aku dan kelompok sedang mengerjakan Team Based Project mata kuliah Data Mining, metode yang sudah kami pelajari sudah ku lampirkan di C:\Users\ACER\OneDrive\Dokumen\1.Mata Kuliah\Data Mining\Project\data-mining-projects\docs\Pembagian Tugas Case Method.pdf
+
+Kemudian, penjelasan mengenai TBP sudah ku lampirkan di C:\Users\ACER\OneDrive\Dokumen\1.Mata Kuliah\Data Mining\Project\data-mining-projects\docs\datmin-tbp.jpeg
+
+Kami sudah berdiskusi, dan berdasarkan empat kuadran novelty, yaitu metode baru untuk masalah lama, metode baru untuk masalah baru, metode lama untuk masalah lama, serta metode lama untuk masalah baru, kami memilih metode lama untuk masalah baru (atau yang masih jarang diteliti), atau kalau mungkin dalam 5 hari bisa kami pelajari, metode baru masalah baru/lama.
