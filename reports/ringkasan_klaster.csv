@@ -1,0 +1,8 @@
+klaster,jumlah_kabupaten,provinsi_terbanyak,ngram_menonjol,nama_desa_tersering,nama_klaster
+0,72,"Jawa Timur (34), Jawa Tengah (30), Daerah Istimewa Yogyakarta (5), Lampung (2)",jo | jo_ | o_ | ej | ejo | rejo | rej | n_,"sidomulyo, sukorejo, sidorejo, sumberejo, wonorejo",Jawa
+1,69,"Sulawesi Tenggara (17), Nusa Tenggara Timur (12), Sulawesi Tengah (8), Maluku Utara (8)",a_ | ol | o_ | wa | e_ | _w | la | _l,"mataiwoi, kampung baru, pasir putih, mekar jaya, beringin jaya","Indonesia timur (Sultra, NTT, Maluku Utara, Nias)"
+2,15,Aceh (15),eu | eun | ue | h_ | e_ | ng_ | g_ | blan,"gampong baro, blang dalam, keutapang, blang cut, meunasah teungoh",Aceh pesisir
+3,42,"Jawa Barat (27), Banten (7), Jawa Tengah (5), Lampung (2)",_ci | ci | _c | ar | ka | ja | suka | sari,"mekarsari, mekarjaya, sukamulya, sukamaju, sukamanah",Sunda
+4,183,"Sumatera Barat (18), Sumatera Selatan (17), Sumatera Utara (15), Kalimantan Barat (14)",ng_ | g_ | ung | un | ang_ | ung_ | ai_ | ng,"mekar jaya, suka maju, mekar sari, kampung baru, sukaraja",Melayu (pesisir Sumatera dan Kalimantan)
+5,80,"Sulawesi Selatan (23), Sulawesi Utara (14), Sumatera Utara (13), Sulawesi Barat (6)",on | _b | g_ | ng_ | to | at | _l | e_,"benteng, polewali, tapian nauli, pardomuan, bonan dolok","Batak, Bugis-Makassar, Minahasa, Dayak pedalaman"
+6,53,"Papua (9), Papua Pegunungan (8), Papua Barat (7), Papua Tengah (7)",_w | _y | wa | i_ | _wa | _o | ai | ma,"pasir putih, muara, kampung baru, trikora, weri",Papua
