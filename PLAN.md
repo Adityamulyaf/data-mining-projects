@@ -55,12 +55,19 @@ Penelitian sejenis yang bisa dijadikan pembanding di laporan:
 
 | Data | Sumber | Keterangan |
 |---|---|---|
-| Kode wilayah 2025 (utama) | github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025 | CSV, 75.266 desa + 8.496 kelurahan, berisi kode dan nama provinsi, kabupaten, kecamatan, dan desa |
-| Kode wilayah (cadangan) | github.com/cahyadsn/wilayah | SQL, diperbarui Februari 2026 |
-| Peta | GeoJSON provinsi atau kabupaten Indonesia dari repo publik | Dicari di hari 1. Kalau versi kabupaten tidak ada, pakai peta provinsi |
+| Kode wilayah 2025 (utama) | github.com/cahyadsn/wilayah, file `db/wilayah.sql` (lisensi MIT) | Kepmendagri No 300.2.2-2138 Tahun 2025. Sudah diunduh ke `data/raw/wilayah.sql` dan diubah ke `data/raw/wilayah_2025.csv` dengan `src/convert_wilayah.py` |
+| Peta | github.com/cahyadsn/wilayah, file `db/wilayah_level_1_2.sql` | berisi batas wilayah provinsi dan kabupaten/kota. Isinya dicek di hari 1. Kalau tidak bisa dipakai, cari GeoJSON dari repo publik lain |
 | Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 10 |
 
-**Wajib dicek di hari 1:** nama kolom yang sebenarnya, jumlah baris, dan encoding file.
+Sumber yang sempat direncanakan sebelumnya (github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025) tidak dipakai. Filenya ternyata Excel, bukan CSV, dan datanya dibuat dari hasil OCR dokumen PDF, sehingga nama desanya berisiko mengandung salah ketik.
+
+**Hasil pengecekan `data/raw/wilayah_2025.csv`:**
+
+- Encoding UTF-8, satu baris per desa atau kelurahan.
+- Kolom: `kode_desa`, `nama_desa`, `jenis`, `kode_kecamatan`, `nama_kecamatan`, `kode_kabupaten`, `nama_kabupaten`, `kode_provinsi`, `nama_provinsi`.
+- Jumlah: 38 provinsi, 514 kabupaten/kota, 7.285 kecamatan, dan 83.762 desa/kelurahan (75.252 desa, 8.496 kelurahan, 14 desa adat). Angka ini cocok dengan angka resmi Kepmendagri.
+- Kolom `jenis` dibaca dari digit pertama bagian terakhir kode: 1 kelurahan, 2 desa, 3 desa adat. Ke-14 desa adat semuanya ada di Kabupaten Jayapura dan namanya diawali "Desa Adat".
+- Nama yang mengandung tanda petik, misalnya "Pasi Kuala Ba'u", sudah ditangani dengan benar.
 
 ## 5. Struktur repo
 
@@ -71,7 +78,8 @@ data-mining-projects/
   requirements.txt
   .gitignore
   data/
-    raw/wilayah_2025.csv
+    raw/wilayah.sql            (data asli dari cahyadsn)
+    raw/wilayah_2025.csv       (hasil convert_wilayah.py)
     processed/desa_clean.parquet
     geo/                       (GeoJSON)
   notebooks/
@@ -82,6 +90,7 @@ data-mining-projects/
     05_generator.ipynb         (generator nama desa, uji ke classifier, bahan kuis)
   src/
     clean.py                   (normalisasi nama, dipakai notebook dan app)
+    convert_wilayah.py         (ubah wilayah.sql menjadi wilayah_2025.csv)
     regions.py                 (pemetaan provinsi ke 7 wilayah besar)
     generator.py               (model n-gram karakter untuk mengarang nama)
   models/                      (model terbaik, format joblib)
@@ -99,7 +108,7 @@ data-mining-projects/
 
 - Ubah ke huruf kecil.
 - Buang tanda baca dan spasi ganda.
-- Buang awalan administratif seperti "desa" dan "kelurahan". Untuk "kampung", cek dulu: kadang kata itu memang bagian dari nama desa.
+- Buang awalan administratif seperti "desa", "desa adat", dan "kelurahan". Untuk "kampung" dan "gampong", cek dulu: kadang kata itu memang bagian dari nama desa.
 - Buang angka atau angka romawi penanda pemekaran, misalnya "I", "II", "Satu".
 - Simpan juga kolom nama asli.
 - **Semua notebook dan dashboard harus memakai fungsi pembersih yang sama dari file ini.** Jangan bikin versi sendiri-sendiri.
@@ -212,7 +221,7 @@ Supaya bisa kerja paralel tanpa saling tunggu, semua orang memakai nama file dan
 
 | File | Dibuat di | Isi |
 |---|---|---|
-| `data/raw/wilayah_2025.csv` | Tahap 1 | data asli, tidak boleh diubah |
+| `data/raw/wilayah_2025.csv` | sudah ada | data asli dalam format CSV, tidak boleh diubah. Kolomnya lihat bagian 4 |
 | `data/processed/desa_clean.parquet` | Tahap 1 | kolom: `kode_desa`, `nama_asli`, `nama_bersih`, `kabupaten`, `provinsi`, `wilayah` (7 wilayah besar) |
 | `models/best_provinsi.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target provinsi |
 | `models/best_wilayah.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target wilayah besar |
@@ -235,8 +244,8 @@ Selesai jika: semua anggota bisa menjalankan `python -c "import sklearn, pandas,
 ### Tahap 1. Data bersih (hari 1, P1, dibantu P3)
 
 Langkah:
-1. Unduh CSV Kepmendagri 2025 ke `data/raw/wilayah_2025.csv`.
-2. Cek nama kolom, jumlah baris, dan encoding. Catat hasilnya di README.
+1. Sudah selesai: data diunduh ke `data/raw/wilayah.sql` dan diubah menjadi `data/raw/wilayah_2025.csv` dengan `python src/convert_wilayah.py`. Hasil pengecekannya ada di bagian 4.
+2. Cek isi `db/wilayah_level_1_2.sql` dari cahyadsn untuk peta. Kalau batas wilayahnya bisa dipakai, ubah ke GeoJSON dan simpan di `data/geo/`.
 3. P1 menulis `src/clean.py` (aturan di 6.1). P3 menulis `src/regions.py` (pemetaan 38 provinsi ke 7 wilayah besar).
 4. Ambil hanya baris tingkat desa atau kelurahan, lalu buat kolom sesuai kontrak file.
 5. Simpan ke `data/processed/desa_clean.parquet`, lalu umumkan ke grup.
@@ -279,7 +288,7 @@ Langkah:
 2. Opsional: perkecil dimensi dengan TruncatedSVD.
 3. Jalankan K-Means dan Agglomerative (Ward) untuk beberapa nilai k, lalu pilih k terbaik dengan silhouette score.
 4. Hitung ARI terhadap provinsi asli.
-5. Buat peta berwarna sesuai klaster. Pakai GeoJSON kabupaten, atau GeoJSON provinsi kalau versi kabupaten tidak ada.
+5. Buat peta berwarna sesuai klaster. Pakai batas kabupaten dari `data/geo/`, atau batas provinsi kalau versi kabupaten tidak bisa dipakai.
 6. Simpan `data/processed/klaster_kabupaten.csv`.
 
 Selesai jika: tabel silhouette dan ARI untuk kedua metode ada, peta tersimpan, dan file klaster tersimpan.
@@ -346,7 +355,7 @@ Selesai jika: gladi berjalan lancar dalam batas waktu, dan setiap anggota bisa m
 |---|---|
 | P1 Data | unduh dan cek data, `clean.py`, EDA, README, reproduksibilitas |
 | P2 Klasifikasi | 3 model x 2 target (RF opsional), tuning, simpan model |
-| P3 Klastering dan Peta | `regions.py`, GeoJSON, klaster kabupaten, ARI, peta |
+| P3 Klastering dan Peta | `regions.py`, data batas wilayah untuk peta, klaster kabupaten, ARI, peta |
 | P4 Analisis dan Generator | literatur, n-gram khas, analisis kesalahan, transmigrasi, generator nama desa, bahan kuis |
 | P5 Dashboard dan Laporan | Streamlit, kerangka dan penulisan laporan, konsultasi ke dosen |
 
@@ -374,7 +383,7 @@ Tidak semua anggota harus menguasai semuanya.
 
 | Hari | P1 Data | P2 Klasifikasi | P3 Klastering dan Peta | P4 Analisis dan Generator | P5 Dashboard dan Laporan |
 |---|---|---|---|---|---|
-| 1 | unduh dan cek CSV, `clean.py` | setup repo, baseline NB | cari GeoJSON, `regions.py` | literatur dan EDA | kerangka laporan, konsultasi dosen |
+| 1 | `clean.py`, parquet bersih | setup repo, baseline NB | cek data batas wilayah, `regions.py` | literatur dan EDA | kerangka laporan, konsultasi dosen |
 | 2 | finalisasi data, EDA nama kembar | 3 model x 2 target | klaster kabupaten | n-gram khas per daerah, mulai generator | kerangka Streamlit |
 | 3 | bantu tim, README | tuning, top-3, simpan model, RF kalau sempat | peta klaster, ARI | analisis kesalahan, transmigrasi, uji generator ke classifier | halaman tebak nama |
 | 4 | cek reproduksibilitas | interpretasi hasil | interpretasi hasil | rangkum temuan, siapkan 2 kuis | halaman peta, fakta, generator, tulis laporan |
@@ -394,7 +403,7 @@ GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara mema
 | Provinsi hasil pemekaran (6 provinsi Papua, Kalimantan Utara, Sulawesi Barat) hampir mustahil dibedakan dari nama | laporkan juga hasil tingkat wilayah besar dan top-3, lalu jadikan temuan |
 | Nama kembar membuat akurasi palsu | split data per nama unik |
 | Kelas tidak seimbang | pakai macro-F1 dan class weight |
-| GeoJSON kabupaten tidak tersedia | turun ke peta tingkat provinsi |
+| Batas wilayah kabupaten tidak bisa dipakai | cari GeoJSON lain, atau turun ke peta tingkat provinsi |
 
 ## 12. Aturan kerja bersama
 

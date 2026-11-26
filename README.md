@@ -33,24 +33,30 @@ Kalau repo ini ada di dalam folder OneDrive, buat virtual environment di luar On
 
 ## Struktur folder
 
-| Folder | Isi |
-|---|---|
-| `data/raw/` | data asli, tidak boleh diubah |
-| `data/processed/` | data hasil olahan |
-| `data/geo/` | GeoJSON untuk peta |
-| `notebooks/` | analisis, dijalankan berurutan |
-| `src/` | fungsi bersama yang dipakai notebook dan dashboard |
-| `models/` | model terbaik (joblib) |
-| `app/` | dashboard Streamlit |
-| `reports/` | laporan, slide, dan `figures/` untuk grafik |
-| `docs/` | bahan dari dosen |
+| Folder              | Isi                                                |
+| ------------------- | -------------------------------------------------- |
+| `data/raw/`       | data asli, tidak boleh diubah                      |
+| `data/processed/` | data hasil olahan                                  |
+| `data/geo/`       | GeoJSON untuk peta                                 |
+| `notebooks/`      | analisis, dijalankan berurutan                     |
+| `src/`            | fungsi bersama yang dipakai notebook dan dashboard |
+| `models/`         | model terbaik (joblib)                             |
+| `app/`            | dashboard Streamlit                                |
+| `reports/`        | laporan, slide, dan `figures/` untuk grafik      |
+| `docs/`           | bahan dari dosen                                   |
 
 ## Data
 
-Sumber utama: kode wilayah Kepmendagri 2025, https://github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025
+Sumber: kode wilayah Kepmendagri No 300.2.2-2138 Tahun 2025 dari https://github.com/cahyadsn/wilayah (file `db/wilayah.sql`, lisensi MIT).
 
-Hasil pengecekan data (diisi di Tahap 1):
+Data asli disimpan di `data/raw/wilayah.sql`, lalu diubah ke CSV dengan:
 
-- Nama kolom:
-- Jumlah baris:
-- Encoding:
+```bash
+python src/convert_wilayah.py
+```
+
+Hasil pengecekan `data/raw/wilayah_2025.csv`:
+
+- Encoding: UTF-8.
+- Kolom: `kode_desa`, `nama_desa`, `jenis`, `kode_kecamatan`, `nama_kecamatan`, `kode_kabupaten`, `nama_kabupaten`, `kode_provinsi`, `nama_provinsi`.
+- Jumlah baris: 83.762 desa/kelurahan (75.252 desa, 8.496 kelurahan, 14 desa adat), dari 38 provinsi, 514 kabupaten/kota, dan 7.285 kecamatan. Cocok dengan angka resmi Kepmendagri.
