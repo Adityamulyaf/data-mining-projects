@@ -58,7 +58,7 @@ Penelitian sejenis yang bisa dijadikan pembanding di laporan:
 | Kode wilayah 2025 (utama) | github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025 | CSV, 75.266 desa + 8.496 kelurahan, berisi kode dan nama provinsi, kabupaten, kecamatan, dan desa |
 | Kode wilayah (cadangan) | github.com/cahyadsn/wilayah | SQL, diperbarui Februari 2026 |
 | Peta | GeoJSON provinsi atau kabupaten Indonesia dari repo publik | Dicari di hari 1. Kalau versi kabupaten tidak ada, pakai peta provinsi |
-| Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 9 |
+| Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 10 |
 
 **Wajib dicek di hari 1:** nama kolom yang sebenarnya, jumlah baris, dan encoding file.
 
@@ -182,7 +182,165 @@ Ada empat halaman:
   3. **Kuis "Asli atau Palsu?":** penonton menebak mana nama desa asli dan mana karangan model.
 - Aturan asosiasi (Apriori/FP-Growth) pada kata penyusun nama desa tidak dikerjakan. Tulis sebagai saran pengembangan di laporan.
 
-## 7. Pembagian tugas
+## 7. Tahapan pengerjaan
+
+Pekerjaan dibagi menjadi 10 tahap. Setiap tahap punya penanggung jawab, hasil berupa file, dan syarat selesai. Tahap yang tidak saling bergantung dikerjakan paralel.
+
+### Urutan dan ketergantungan
+
+```
+Tahap 0 Persiapan
+   |
+Tahap 1 Data bersih  ------------------------------------------+
+   |                                                           |
+   +--> Tahap 2 EDA                                            |
+   +--> Tahap 3 Klasifikasi --+--> Tahap 5 Analisis kesalahan  |
+   +--> Tahap 4 Klastering    +--> Tahap 6 Generator (uji)     |
+   |                          +--> Tahap 7 Dashboard (final)   |
+   +--> Tahap 6 Generator (membuat nama, tidak perlu model)    |
+                                                               |
+Tahap 8 Laporan (berjalan sejak hari 1) <----------------------+
+   |
+Tahap 9 Presentasi dan gladi
+```
+
+Artinya: **Tahap 1 harus selesai paling dulu**, karena semua orang memakai file hasilnya. **Tahap 3 jadi kunci kedua**, karena analisis kesalahan, uji generator, dan dashboard butuh model yang sudah tersimpan.
+
+### Kontrak file antar tahap
+
+Supaya bisa kerja paralel tanpa saling tunggu, semua orang memakai nama file dan kolom berikut. Jangan diubah tanpa memberi tahu tim.
+
+| File | Dibuat di | Isi |
+|---|---|---|
+| `data/raw/wilayah_2025.csv` | Tahap 1 | data asli, tidak boleh diubah |
+| `data/processed/desa_clean.parquet` | Tahap 1 | kolom: `kode_desa`, `nama_asli`, `nama_bersih`, `kabupaten`, `provinsi`, `wilayah` (7 wilayah besar) |
+| `models/best_provinsi.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target provinsi |
+| `models/best_wilayah.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target wilayah besar |
+| `data/processed/klaster_kabupaten.csv` | Tahap 4 | kolom: `kabupaten`, `provinsi`, `klaster` |
+| `data/processed/kandidat_salah_kode.csv` | Tahap 5 | desa yang namanya sangat tidak cocok dengan provinsinya |
+| `data/processed/nama_karangan.csv` | Tahap 6 | kolom: `wilayah`, `nama_karangan`, `tebakan_model` |
+| `reports/figures/` | semua tahap | semua grafik untuk laporan dan slide, format PNG |
+
+### Tahap 0. Persiapan (hari 1, pagi, semua anggota)
+
+Langkah:
+1. Clone repo dan buat struktur folder sesuai bagian 5.
+2. Buat `requirements.txt`, lalu setiap anggota memasang library di laptop masing-masing.
+3. Buat `.gitignore` untuk folder cache Python dan checkpoint notebook. File di `data/processed/` dan `models/` tetap di-commit, karena anggota lain membutuhkannya untuk bekerja paralel. Kalau ada file model lebih dari 50 MB, bagikan lewat Google Drive dan tulis tautannya di README.
+4. Isi nama anggota di bagian 8.
+5. P5 menyampaikan judul baru ke dosen dan mengisi kolom algoritma dan dataset di sheet kelompok.
+
+Selesai jika: semua anggota bisa menjalankan `python -c "import sklearn, pandas, streamlit"` tanpa error.
+
+### Tahap 1. Data bersih (hari 1, P1, dibantu P3)
+
+Langkah:
+1. Unduh CSV Kepmendagri 2025 ke `data/raw/wilayah_2025.csv`.
+2. Cek nama kolom, jumlah baris, dan encoding. Catat hasilnya di README.
+3. P1 menulis `src/clean.py` (aturan di 6.1). P3 menulis `src/regions.py` (pemetaan 38 provinsi ke 7 wilayah besar).
+4. Ambil hanya baris tingkat desa atau kelurahan, lalu buat kolom sesuai kontrak file.
+5. Simpan ke `data/processed/desa_clean.parquet`, lalu umumkan ke grup.
+
+Selesai jika: file parquet ada, kolomnya sesuai kontrak, jumlah baris sekitar 83 ribu, dan tidak ada `nama_bersih` yang kosong.
+
+### Tahap 2. EDA (hari 1 sampai 2, P1 dan P4)
+
+Notebook: `01_eda.ipynb`.
+
+Langkah:
+1. Jumlah desa per provinsi dan per wilayah besar, dalam bentuk grafik batang.
+2. Distribusi panjang nama desa.
+3. Nama desa paling sering muncul dan nama kembar lintas provinsi, misalnya Sukamaju.
+4. Awalan dan akhiran paling umum per wilayah, sebagai gambaran awal.
+
+Selesai jika: minimal 4 grafik tersimpan di `reports/figures/`, ditambah ringkasan temuan 5 sampai 10 kalimat di notebook.
+
+### Tahap 3. Klasifikasi (hari 2 sampai 3, P2)
+
+Notebook: `02_classification.ipynb`.
+
+Langkah:
+1. Split data dengan `GroupShuffleSplit` berdasarkan `nama_bersih` (80 persen latih, 20 persen uji). Tambahkan assert bahwa tidak ada nama yang muncul di keduanya.
+2. Buat pipeline TF-IDF n-gram karakter + model untuk NB, LR, dan SVM.
+3. Latih untuk dua target: `provinsi` dan `wilayah`.
+4. Hitung accuracy, macro-F1, dan top-3 accuracy, lalu buat tabel perbandingan.
+5. Tuning ringan untuk model terbaik, misalnya nilai `C` pada LR atau SVM dan rentang n-gram.
+6. Simpan model terbaik ke `models/best_provinsi.joblib` dan `models/best_wilayah.joblib`, lalu umumkan ke grup.
+7. Kalau masih sempat, tambahkan Random Forest sebagai pembanding.
+
+Selesai jika: tabel 3 model x 2 target ada, dua file model tersimpan, dan assert split lolos.
+
+### Tahap 4. Klastering dan peta (hari 2 sampai 3, P3)
+
+Notebook: `03_clustering.ipynb`.
+
+Langkah:
+1. Untuk setiap kabupaten, hitung rata-rata vektor TF-IDF nama-nama desanya.
+2. Opsional: perkecil dimensi dengan TruncatedSVD.
+3. Jalankan K-Means dan Agglomerative (Ward) untuk beberapa nilai k, lalu pilih k terbaik dengan silhouette score.
+4. Hitung ARI terhadap provinsi asli.
+5. Buat peta berwarna sesuai klaster. Pakai GeoJSON kabupaten, atau GeoJSON provinsi kalau versi kabupaten tidak ada.
+6. Simpan `data/processed/klaster_kabupaten.csv`.
+
+Selesai jika: tabel silhouette dan ARI untuk kedua metode ada, peta tersimpan, dan file klaster tersimpan.
+
+### Tahap 5. N-gram khas dan analisis kesalahan (hari 3, P4)
+
+Notebook: `04_error_analysis.ipynb`. Butuh model dari Tahap 3.
+
+Langkah:
+1. Ambil n-gram dengan koefisien terbesar per provinsi dari model Logistic Regression.
+2. Buat confusion matrix tingkat wilayah besar.
+3. Analisis transmigrasi: persentase desa di Lampung, Sumatera Selatan, Jambi, Kalimantan, dan Sulawesi Tengah yang ditebak sebagai provinsi di Jawa, dibandingkan dengan provinsi lain. Sertakan contoh nama.
+4. Kandidat salah kode wilayah: desa yang tebakan modelnya sangat yakin tapi berbeda dari label. Simpan ke `data/processed/kandidat_salah_kode.csv`.
+
+Selesai jika: tabel n-gram khas, confusion matrix, grafik transmigrasi, dan file kandidat salah kode sudah ada.
+
+### Tahap 6. Generator nama desa (hari 2 sampai 3, P4)
+
+Kode: `src/generator.py`. Notebook: `05_generator.ipynb`.
+
+Langkah:
+1. Tulis generator n-gram karakter (aturan di 6.8). Membuat nama tidak butuh model klasifikasi, jadi bisa dimulai di hari 2.
+2. Hasilkan sekitar 50 nama per wilayah besar, lalu buang nama yang sudah ada di data asli.
+3. Setelah model dari Tahap 3 tersedia, tebak wilayah nama-nama karangan itu dan hitung persentase yang benar.
+4. Simpan `data/processed/nama_karangan.csv`.
+5. Siapkan bahan dua kuis: 5 nama desa untuk "Manusia vs Mesin", dan 10 nama campuran (5 asli, 5 karangan) untuk "Asli atau Palsu?".
+
+Selesai jika: file nama karangan ada, persentase tebakan benar sudah dilaporkan, dan bahan kuis siap.
+
+### Tahap 7. Dashboard (hari 2 sampai 4, P5)
+
+Kode: `app/streamlit_app.py`.
+
+Langkah:
+1. Hari 2: buat kerangka 4 halaman dengan data contoh, supaya tidak menunggu model.
+2. Hari 3: sambungkan halaman "Tebak nama desa" ke `models/best_provinsi.joblib`. Gunakan `src/clean.py` untuk membersihkan input.
+3. Hari 4: sambungkan halaman peta, fakta menarik, serta generator dan kuis ke file hasil Tahap 4, 5, dan 6.
+4. Uji dengan 10 nama desa asli (sebagian dari luar data latih) dan 3 nama karangan.
+
+Selesai jika: `streamlit run app/streamlit_app.py` berjalan dan keempat halaman berfungsi.
+
+### Tahap 8. Laporan (hari 1 sampai 4, P5, semua anggota menyumbang)
+
+Langkah:
+1. Hari 1: buat kerangka laporan mengikuti 7 tahap TBP.
+2. Setiap penanggung jawab tahap menulis bagiannya sendiri: metode, hasil, dan grafik dari `reports/figures/`.
+3. P5 menyatukan, merapikan bahasa, dan menambahkan bagian keterbatasan dan saran pengembangan (termasuk Apriori dan versi dunia).
+
+Selesai jika: semua bagian terisi, semua grafik punya keterangan, dan daftar pustaka lengkap.
+
+### Tahap 9. Presentasi dan gladi (hari 5, semua anggota)
+
+Langkah:
+1. Susun slide. Setiap anggota membuat slide bagiannya sendiri.
+2. Siapkan dashboard di satu laptop yang dipakai untuk demo. Siapkan juga cadangan berupa rekaman layar kalau demo gagal.
+3. Gladi lengkap: alur presentasi, demo tebak nama, dan kedua kuis.
+4. Latihan tanya jawab: saling menguji pertanyaan yang kemungkinan ditanyakan dosen, misalnya "kan bisa dicari di Google?", "kenapa pakai n-gram karakter?", dan "kenapa split per nama unik?".
+
+Selesai jika: gladi berjalan lancar dalam batas waktu, dan setiap anggota bisa menjawab pertanyaan tentang bagiannya.
+
+## 8. Pembagian tugas
 
 | Peran | Tanggung jawab utama |
 |---|---|
@@ -212,7 +370,7 @@ Tidak semua anggota harus menguasai semuanya.
   - P4: analisis kesalahan, transmigrasi, dan cara kerja generator.
   - P5: alur dashboard dan jalannya demo.
 
-## 8. Jadwal 5 hari
+## 9. Jadwal 5 hari
 
 | Hari | P1 Data | P2 Klasifikasi | P3 Klastering dan Peta | P4 Analisis dan Generator | P5 Dashboard dan Laporan |
 |---|---|---|---|---|---|
@@ -222,14 +380,14 @@ Tidak semua anggota harus menguasai semuanya.
 | 4 | cek reproduksibilitas | interpretasi hasil | interpretasi hasil | rangkum temuan, siapkan 2 kuis | halaman peta, fakta, generator, tulis laporan |
 | 5 | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | gladi demo dan kuis, finalisasi laporan |
 
-## 9. Bonus opsional (hanya kalau hari 4 longgar)
+## 10. Bonus opsional (hanya kalau hari 4 longgar)
 
 GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara memakainya:
 
 1. **Uji generalisasi.** Ambil nama tempat Indonesia dari GeoNames yang tidak ada di data Kemendagri, lalu cek apakah model tetap bisa menebak provinsinya dengan benar.
 2. **Versi dunia.** Tebak negara dari nama kota memakai subset `cities1000`, dengan kolom `asciiname` dan `country code`. Batasi ke 30 sampai 50 negara.
 
-## 10. Risiko dan cara mengatasinya
+## 11. Risiko dan cara mengatasinya
 
 | Risiko | Cara mengatasi |
 |---|---|
@@ -238,14 +396,14 @@ GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara mema
 | Kelas tidak seimbang | pakai macro-F1 dan class weight |
 | GeoJSON kabupaten tidak tersedia | turun ke peta tingkat provinsi |
 
-## 11. Aturan kerja bersama
+## 12. Aturan kerja bersama
 
 - **Fungsi bersama** hanya ditulis di `src/`. Notebook dan app mengimpor dari sana, tidak menyalin kode.
 - **Data mentah** di `data/raw/` jangan diubah. Hasil olahan disimpan di `data/processed/`.
 - **Notebook** harus bisa dijalankan dari awal sampai akhir (Restart and Run All) tanpa error sebelum di-commit.
 - **Commit** kecil-kecil, dengan pesan yang jelas tentang apa yang diubah.
 
-## 12. Checklist selesai
+## 13. Checklist selesai
 
 - [ ] Notebook 01 sampai 05 berjalan berurutan dari clone baru tanpa error.
 - [ ] Ada assert di notebook 02 yang memastikan tidak ada nama yang muncul di data latih dan uji sekaligus.
