@@ -91,6 +91,7 @@ data-mining-projects/
   src/
     clean.py                   (normalisasi nama, dipakai notebook dan app)
     convert_wilayah.py         (ubah wilayah.sql menjadi wilayah_2025.csv)
+    build_dataset.py           (buat desa_clean.parquet dari wilayah_2025.csv)
     regions.py                 (pemetaan provinsi ke 7 wilayah besar)
     generator.py               (model n-gram karakter untuk mengarang nama)
   models/                      (model terbaik, format joblib)
@@ -106,11 +107,16 @@ data-mining-projects/
 
 ### 6.1 Preprocessing (`src/clean.py`)
 
-- Ubah ke huruf kecil.
-- Buang tanda baca dan spasi ganda.
-- Buang awalan administratif seperti "desa", "desa adat", dan "kelurahan". Untuk "kampung" dan "gampong", cek dulu: kadang kata itu memang bagian dari nama desa.
-- Buang angka atau angka romawi penanda pemekaran, misalnya "I", "II", "Satu".
-- Simpan juga kolom nama asli.
+Sudah dibuat. Prinsipnya: buang yang administratif, pertahankan yang mengandung petunjuk budaya. Aturan berikut diputuskan setelah melihat data:
+
+- Ubah ke huruf kecil, rapikan spasi.
+- Buang awalan "Desa Adat" (14 desa di Kabupaten Jayapura). Kata "desa" lainnya **dipertahankan**, karena ternyata bagian dari nama asli, misalnya "Desa Baru".
+- **Pertahankan** kata khas daerah di awal nama, karena justru menjadi petunjuk budaya. Contoh dari data: Gampong (82 desa, semuanya Aceh), Huta (99, semuanya Sumatera Utara), Lumban, Pekon dan Tiuh (Lampung), Negeri, Marga, Lembang, Kampung.
+- Buang penanda pemekaran: angka romawi berdiri sendiri (I sampai XX, sekitar 1.270 nama) dan potongan yang mengandung angka ("Blok 15", "N-1 Aek Nabara"). Kata bilangan seperti "Dua" dipertahankan karena merupakan kata biasa.
+- Perbaiki singkatan di Aceh: "Mns." menjadi meunasah, "Kp." menjadi kampung, "Tgk." menjadi teungku. Pisahkan kata yang menempel ("SeuneubokTeungoh" menjadi "seuneubok teungoh").
+- Buang tanda baca, kecuali tanda petik (misalnya "kandua'" dan "ba'u", ciri bahasa di Sulawesi dan Aceh) dan tanda hubung (misalnya "sigurung-gurung").
+- Nama yang tidak dipakai untuk model: singkatan huruf kapital semua ("OP", "MKCM", "WKO", "RD. PJKA"), total 4 nama. Nama asli yang pendek seperti "Tu", "Ur", dan "Uf" tetap dipakai, karena memang nama asli (kebanyakan di Papua, Maluku, dan NTT).
+- Kolom nama asli tetap disimpan.
 - **Semua notebook dan dashboard harus memakai fungsi pembersih yang sama dari file ini.** Jangan bikin versi sendiri-sendiri.
 
 ### 6.2 Nama kembar
@@ -222,7 +228,7 @@ Supaya bisa kerja paralel tanpa saling tunggu, semua orang memakai nama file dan
 | File | Dibuat di | Isi |
 |---|---|---|
 | `data/raw/wilayah_2025.csv` | sudah ada | data asli dalam format CSV, tidak boleh diubah. Kolomnya lihat bagian 4 |
-| `data/processed/desa_clean.parquet` | Tahap 1 | kolom: `kode_desa`, `nama_asli`, `nama_bersih`, `kabupaten`, `provinsi`, `wilayah` (7 wilayah besar) |
+| `data/processed/desa_clean.parquet` | sudah ada | kolom: `kode_desa`, `nama_asli`, `nama_bersih`, `jenis`, `kode_kabupaten`, `kabupaten`, `kode_provinsi`, `provinsi`, `wilayah` (7 wilayah besar). Dibuat ulang dengan `python src/build_dataset.py` |
 | `models/best_provinsi.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target provinsi |
 | `models/best_wilayah.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target wilayah besar |
 | `data/processed/klaster_kabupaten.csv` | Tahap 4 | kolom: `kabupaten`, `provinsi`, `klaster` |
@@ -246,11 +252,15 @@ Selesai jika: semua anggota bisa menjalankan `python -c "import sklearn, pandas,
 Langkah:
 1. Sudah selesai: data diunduh ke `data/raw/wilayah.sql` dan diubah menjadi `data/raw/wilayah_2025.csv` dengan `python src/convert_wilayah.py`. Hasil pengecekannya ada di bagian 4.
 2. Cek isi `db/wilayah_level_1_2.sql` dari cahyadsn untuk peta. Kalau batas wilayahnya bisa dipakai, ubah ke GeoJSON dan simpan di `data/geo/`.
-3. P1 menulis `src/clean.py` (aturan di 6.1). P3 menulis `src/regions.py` (pemetaan 38 provinsi ke 7 wilayah besar).
-4. Ambil hanya baris tingkat desa atau kelurahan, lalu buat kolom sesuai kontrak file.
-5. Simpan ke `data/processed/desa_clean.parquet`, lalu umumkan ke grup.
+3. Sudah selesai: `src/clean.py` (aturan di 6.1) dan `src/regions.py` (38 provinsi ke 7 wilayah besar).
+4. Sudah selesai: `python src/build_dataset.py` menghasilkan `data/processed/desa_clean.parquet`.
 
-Selesai jika: file parquet ada, kolomnya sesuai kontrak, jumlah baris sekitar 83 ribu, dan tidak ada `nama_bersih` yang kosong.
+Status: **selesai kecuali langkah 2 (peta)**. Hasilnya:
+
+- 83.758 baris (4 singkatan dibuang dari 83.762), 62.769 nama bersih unik, 38 provinsi, 7 wilayah.
+- Tidak ada nilai kosong.
+- Sebaran per wilayah: Sumatera 25.555, Jawa 25.271, Sulawesi 10.575, Papua 7.355, Kalimantan 7.252, Bali dan Nusa Tenggara 5.321, Maluku 2.416.
+- Nama kembar: 4.250 nama bersih muncul di lebih dari satu provinsi, mencakup 19.771 baris. Paling sering: sidomulyo (98), sidorejo (71), karanganyar (70), mekar jaya (66), sukamaju (65). Ini bahan bagus untuk EDA, sekaligus alasan kenapa split harus per nama unik.
 
 ### Tahap 2. EDA (hari 1 sampai 2, P1 dan P4)
 
