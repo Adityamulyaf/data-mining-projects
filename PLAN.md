@@ -7,7 +7,12 @@ Rencana kerja Team-Based Project (TBP) Data Mining. Dokumen ini jadi pegangan be
 Kita membangun model yang menebak **provinsi asal sebuah desa hanya dari namanya**. Setelah itu kita melihat apakah pola budaya Indonesia muncul dengan sendirinya dari data. Contohnya awalan "Ci-" untuk Sunda, akhiran "-rejo" atau "-harjo" untuk Jawa, "Lumban" atau "Huta" untuk Batak, dan "Nagari" untuk Minang.
 
 - **Kuadran novelty:** metode lama untuk masalah baru.
-- **Metode:** text mining (TF-IDF n-gram karakter), klasifikasi (Naive Bayes, Logistic Regression, SVM, Random Forest), dan klastering (K-Means, Hierarchical).
+- **Metode:**
+  - ekstraksi fitur teks: TF-IDF n-gram karakter;
+  - klasifikasi: Naive Bayes, Logistic Regression, SVM (Random Forest opsional);
+  - klastering: K-Means dan Hierarchical;
+  - generator nama desa: model n-gram karakter (rantai Markov).
+- **Usulan judul:** Jejak Budaya dalam Nama: Klasifikasi, Klastering, dan Generasi Nama Desa di Indonesia Berbasis N-gram Karakter.
 - **Tim dan waktu:** 5 orang, 5 hari.
 - **Output wajib TBP:** dataset, kode, model, dashboard, laporan, dan presentasi. Detailnya ada di `docs/datmin-tbp.jpeg`.
 
@@ -44,6 +49,7 @@ Penelitian sejenis yang bisa dijadikan pembanding di laporan:
 2. Potongan huruf (n-gram) apa yang paling khas di tiap daerah?
 3. Kalau kabupaten dikelompokkan berdasarkan nama-nama desanya **tanpa label**, apakah kelompok yang terbentuk mirip wilayah budaya?
 4. Di mana kesalahan model punya makna? Misalnya jejak transmigrasi.
+5. Kalau model mengarang nama desa baru untuk tiap daerah, apakah manusia bisa membedakannya dari nama asli, dan apakah classifier menebak daerah yang sesuai?
 
 ## 4. Data
 
@@ -70,12 +76,14 @@ data-mining-projects/
     geo/                       (GeoJSON)
   notebooks/
     01_eda.ipynb               (distribusi, nama kembar, panjang nama)
-    02_classification.ipynb    (NB vs LR vs SVM vs RF, 2 level label)
+    02_classification.ipynb    (NB vs LR vs SVM, RF opsional, 2 level label)
     03_clustering.ipynb        (klaster kabupaten, peta, ARI)
     04_error_analysis.ipynb    (confusion matrix, transmigrasi, cek kualitas data)
+    05_generator.ipynb         (generator nama desa, uji ke classifier, bahan kuis)
   src/
     clean.py                   (normalisasi nama, dipakai notebook dan app)
     regions.py                 (pemetaan provinsi ke 7 wilayah besar)
+    generator.py               (model n-gram karakter untuk mengarang nama)
   models/                      (model terbaik, format joblib)
   app/
     streamlit_app.py
@@ -108,8 +116,12 @@ data-mining-projects/
 
 ### 6.4 Klasifikasi
 
-- **Model:** MultinomialNB, LogisticRegression, LinearSVC, RandomForest.
-  - RandomForest berat untuk fitur sebanyak ini. Batasi jumlah fiturnya, misalnya dengan `SelectKBest`.
+- **Model inti:** MultinomialNB, LogisticRegression, LinearSVC. Alasan memilih tiap model (wajib ditulis di laporan):
+  - **Naive Bayes:** baseline klasik untuk teks, cepat, dan sederhana.
+  - **Logistic Regression:** bisa ditafsirkan. Koefisiennya menunjukkan n-gram paling khas tiap daerah.
+  - **SVM:** biasanya paling kuat untuk fitur teks yang jumlahnya sangat banyak.
+- **Opsional:** RandomForest sebagai pembanding dari keluarga model pohon, kalau masih ada waktu. Model ini berat untuk fitur sebanyak ini, jadi batasi jumlah fiturnya, misalnya dengan `SelectKBest`.
+- Catatan: TF-IDF bukan model, melainkan cara mengubah nama menjadi angka. Jadi susunannya 1 ekstraksi fitur dan 3 model yang dibandingkan.
 - **Target:** provinsi (38 kelas) dan wilayah besar (7 kelas).
 - **Metrik:**
   - accuracy;
@@ -137,27 +149,47 @@ data-mining-projects/
 - **Jejak transmigrasi.** Di provinsi tujuan transmigrasi (Lampung, Sumatera Selatan, Jambi, Kalimantan, Sulawesi Tengah), hitung persentase desa yang ditebak sebagai provinsi di Jawa. Bandingkan dengan provinsi lain sebagai pembanding. Tampilkan contoh nama desanya.
 - **Kandidat salah kode wilayah.** Cari desa yang tebakan model sangat yakin, tapi provinsinya berbeda dari label. Tampilkan sebagai daftar.
 
-### 6.8 Dashboard (Streamlit)
+### 6.8 Generator nama desa (`src/generator.py`, notebook 05)
 
-Ada tiga halaman:
+Cara kerjanya:
+
+1. Untuk setiap wilayah, kumpulkan semua nama desanya.
+2. Hitung huruf apa yang paling sering muncul setelah setiap potongan 3 huruf. Contohnya, setelah "rej" biasanya muncul "o".
+3. Bangun nama baru huruf demi huruf berdasarkan peluang itu, sampai bertemu tanda akhir nama.
+4. Buang nama hasil karangan yang ternyata sudah ada di data asli, supaya yang tersisa benar-benar nama baru.
+
+Yang dihasilkan:
+
+- Contoh nama karangan untuk tiap wilayah besar.
+- **Uji ke classifier:** masukkan nama karangan ke model terbaik, lalu hitung berapa persen yang ditebak sesuai wilayah asalnya.
+- **Bahan kuis "Asli atau Palsu?":** 10 nama campuran (5 asli, 5 karangan) untuk presentasi.
+
+### 6.9 Dashboard (Streamlit)
+
+Ada empat halaman:
 
 1. **Tebak nama desa.** Pengguna mengetik nama desa, lalu muncul 3 provinsi teratas beserta probabilitasnya dan n-gram yang paling menentukan.
 2. **Peta klaster kabupaten.**
 3. **Fakta menarik.** Isinya nama desa yang paling sering muncul, n-gram khas tiap daerah, jejak transmigrasi, dan daftar kandidat salah kode wilayah.
+4. **Generator dan kuis.** Pilih wilayah, lalu klik untuk mengarang nama desa baru. Ada juga mode kuis "Asli atau Palsu?" dan "Manusia vs Mesin".
 
-### 6.9 Laporan dan presentasi
+### 6.10 Laporan dan presentasi
 
 - Ikuti 7 tahap TBP: rumusan masalah, pengumpulan data, preprocessing, modeling, evaluasi, prototype, dan presentasi.
-- Di presentasi, ajak penonton menyebutkan nama desa kampung halamannya untuk didemokan.
+- Tiga momen interaktif di presentasi:
+  1. **Demo tebak nama:** penonton menyebutkan nama desa kampung halamannya.
+  2. **Kuis "Manusia vs Mesin":** penonton menebak provinsi dari 5 nama desa, lalu skornya dibandingkan dengan model.
+  3. **Kuis "Asli atau Palsu?":** penonton menebak mana nama desa asli dan mana karangan model.
+- Aturan asosiasi (Apriori/FP-Growth) pada kata penyusun nama desa tidak dikerjakan. Tulis sebagai saran pengembangan di laporan.
 
 ## 7. Pembagian tugas
 
 | Peran | Tanggung jawab utama |
 |---|---|
 | P1 Data | unduh dan cek data, `clean.py`, EDA, README, reproduksibilitas |
-| P2 Klasifikasi | 4 model x 2 target, tuning, simpan model |
+| P2 Klasifikasi | 3 model x 2 target (RF opsional), tuning, simpan model |
 | P3 Klastering dan Peta | `regions.py`, GeoJSON, klaster kabupaten, ARI, peta |
-| P4 Analisis | literatur, n-gram khas, analisis kesalahan, transmigrasi, rangkuman temuan |
+| P4 Analisis dan Generator | literatur, n-gram khas, analisis kesalahan, transmigrasi, generator nama desa, bahan kuis |
 | P5 Dashboard dan Laporan | Streamlit, kerangka dan penulisan laporan, konsultasi ke dosen |
 
 Isi nama anggota di setiap peran:
@@ -168,15 +200,27 @@ Isi nama anggota di setiap peran:
 - P4:
 - P5:
 
+### Siapa menguasai apa untuk presentasi
+
+Tidak semua anggota harus menguasai semuanya.
+
+- **Semua anggota:** paham gambaran besar proyek, alasan memakai n-gram karakter, dan jawaban untuk pertanyaan "kan bisa dicari di Google?" (bagian 2).
+- **Masing-masing:** menguasai bagiannya sendiri secara mendalam.
+  - P1: data, preprocessing, dan penanganan nama kembar.
+  - P2: cara kerja dan alasan memilih NB, LR, dan SVM, serta arti tiap metrik.
+  - P3: cara kerja K-Means dan Hierarchical, silhouette, dan ARI.
+  - P4: analisis kesalahan, transmigrasi, dan cara kerja generator.
+  - P5: alur dashboard dan jalannya demo.
+
 ## 8. Jadwal 5 hari
 
-| Hari | P1 Data | P2 Klasifikasi | P3 Klastering dan Peta | P4 Analisis | P5 Dashboard dan Laporan |
+| Hari | P1 Data | P2 Klasifikasi | P3 Klastering dan Peta | P4 Analisis dan Generator | P5 Dashboard dan Laporan |
 |---|---|---|---|---|---|
 | 1 | unduh dan cek CSV, `clean.py` | setup repo, baseline NB | cari GeoJSON, `regions.py` | literatur dan EDA | kerangka laporan, konsultasi dosen |
-| 2 | finalisasi data, EDA nama kembar | 4 model x 2 target | klaster kabupaten | n-gram khas per daerah | kerangka Streamlit |
-| 3 | bantu tim, README | tuning, top-3, simpan model | peta klaster, ARI | analisis kesalahan dan transmigrasi | halaman tebak nama |
-| 4 | cek reproduksibilitas | interpretasi hasil | interpretasi hasil | rangkum temuan | halaman peta dan fakta, tulis laporan |
-| 5 | slide | slide | slide | slide | gladi demo, finalisasi laporan |
+| 2 | finalisasi data, EDA nama kembar | 3 model x 2 target | klaster kabupaten | n-gram khas per daerah, mulai generator | kerangka Streamlit |
+| 3 | bantu tim, README | tuning, top-3, simpan model, RF kalau sempat | peta klaster, ARI | analisis kesalahan, transmigrasi, uji generator ke classifier | halaman tebak nama |
+| 4 | cek reproduksibilitas | interpretasi hasil | interpretasi hasil | rangkum temuan, siapkan 2 kuis | halaman peta, fakta, generator, tulis laporan |
+| 5 | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | gladi demo dan kuis, finalisasi laporan |
 
 ## 9. Bonus opsional (hanya kalau hari 4 longgar)
 
@@ -203,11 +247,14 @@ GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara mema
 
 ## 12. Checklist selesai
 
-- [ ] Notebook 01 sampai 04 berjalan berurutan dari clone baru tanpa error.
+- [ ] Notebook 01 sampai 05 berjalan berurutan dari clone baru tanpa error.
 - [ ] Ada assert di notebook 02 yang memastikan tidak ada nama yang muncul di data latih dan uji sekaligus.
-- [ ] Tabel accuracy, macro-F1, dan top-3 untuk 4 model x 2 target sudah ada, dan pilihan model terbaik dijelaskan dengan angka.
+- [ ] Tabel accuracy, macro-F1, dan top-3 untuk 3 model x 2 target sudah ada, dan pilihan model terbaik dijelaskan dengan angka.
+- [ ] Alasan memilih tiap model tertulis di laporan.
 - [ ] Hasil klastering lengkap dengan silhouette, ARI, dan peta.
 - [ ] Analisis transmigrasi dan daftar kandidat salah kode wilayah sudah ada.
+- [ ] Generator menghasilkan nama baru (tidak ada di data asli) untuk tiap wilayah besar, dan hasil ujinya ke classifier sudah dilaporkan.
+- [ ] Bahan dua kuis (Manusia vs Mesin, Asli atau Palsu) siap dipakai.
 - [ ] `streamlit run app/streamlit_app.py` berjalan, dan sudah diuji dengan 10 nama desa asli (sebagian dari luar data latih) dan 3 nama karangan.
 - [ ] Laporan mengikuti 7 tahap TBP.
 - [ ] Slide selesai dan gladi demo sudah dilakukan.
