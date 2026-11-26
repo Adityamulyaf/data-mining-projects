@@ -281,6 +281,8 @@ Langkah:
 
 Selesai jika: minimal 4 grafik tersimpan di `reports/figures/`, ditambah ringkasan temuan 5 sampai 10 kalimat di notebook.
 
+Status: **selesai** (`notebooks/01_eda.ipynb`). Grafik: `01_jumlah_desa.png`, `01_panjang_nama.png`, `01_nama_kembar.png`, `01_kata_pertama.png`. Ringkasan 7 poin ada di akhir notebook, antara lain: jumlah desa timpang sampai 32 kali lipat, 64 persen nama hanya satu kata, 4.250 nama dipakai di lebih dari satu provinsi, dan kata pertama khas wilayah (sungai, tumbang, nanga di Kalimantan; bonto di Sulawesi; golo di Nusa Tenggara).
+
 ### Tahap 3. Klasifikasi (hari 2 sampai 3, P2)
 
 Notebook: `02_classification.ipynb`.
