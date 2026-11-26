@@ -25,3 +25,6 @@ desktop.ini
 
 # Catatan: data/processed/ dan models/ sengaja TIDAK diabaikan,
 # karena anggota lain membutuhkannya untuk bekerja paralel (lihat PLAN.md bagian 7).
+
+# batas wilayah mentah (24 MB), diunduh otomatis oleh src/convert_geo.py
+data/raw/wilayah_level_1_2.sql
