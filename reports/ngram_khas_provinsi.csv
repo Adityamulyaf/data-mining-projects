@@ -1,0 +1,381 @@
+provinsi,peringkat,ngram,koefisien,jumlah_desa,persen_di_provinsi
+Aceh,1,eu,15.209,2092,84.0
+Aceh,2,e_,8.375,4516,28.9
+Aceh,3,h_,7.611,4601,27.0
+Aceh,4,ie,6.049,428,63.8
+Aceh,5,ue,5.957,751,81.2
+Aceh,6,t_,5.868,3728,22.0
+Aceh,7,ee_,5.492,347,88.8
+Aceh,8,blan,5.44,399,95.2
+Aceh,9,ot_,5.12,443,70.9
+Aceh,10,_r,4.903,3757,13.5
+Bali,1,_ant,5.724,51,11.8
+Bali,2,ggah,5.326,35,20.0
+Bali,3,ukad,4.87,69,10.1
+Bali,4,lat_,4.863,84,6.0
+Bali,5,beng,4.698,142,6.3
+Bali,6,atur,4.663,97,7.2
+Bali,7,an_,4.503,9820,1.9
+Bali,8,sula,4.48,32,12.5
+Bali,9,gana,4.427,32,9.4
+Bali,10,_ab,4.375,149,7.4
+Banten,1,_ci,8.269,1578,14.5
+Banten,2,ci,6.858,1891,12.5
+Banten,3,eu,5.488,2092,2.4
+Banten,4,_c,5.322,2972,9.2
+Banten,5,bend,4.529,144,6.9
+Banten,6,panu,4.245,41,12.2
+Banten,7,suka,4.145,1319,7.4
+Banten,8,buar,4.14,41,26.8
+Banten,9,ranc,3.907,84,16.7
+Banten,10,gere,3.889,31,16.1
+Bengkulu,1,o_,5.812,9436,1.3
+Bengkulu,2,aba_,5.4,140,22.1
+Bengkulu,3,r_,5.251,6898,4.6
+Bengkulu,4,k_,5.142,5505,3.3
+Bengkulu,5,i_,4.647,12984,1.9
+Bengkulu,6,ebar,4.596,50,38.0
+Bengkulu,7,tala,4.568,407,22.6
+Bengkulu,8,_a,4.562,4488,4.7
+Bengkulu,9,_s,4.552,14426,2.2
+Bengkulu,10,ng_,4.218,16754,3.8
+Daerah Istimewa Yogyakarta,1,_ng,5.261,745,2.7
+Daerah Istimewa Yogyakarta,2,_ngl,5.236,69,8.7
+Daerah Istimewa Yogyakarta,3,rt,5.189,703,5.3
+Daerah Istimewa Yogyakarta,4,gsar,4.36,397,2.3
+Daerah Istimewa Yogyakarta,5,wu,4.268,749,1.9
+Daerah Istimewa Yogyakarta,6,giri,4.223,190,10.0
+Daerah Istimewa Yogyakarta,7,ndow,4.172,39,10.3
+Daerah Istimewa Yogyakarta,8,argo,4.124,183,11.5
+Daerah Istimewa Yogyakarta,9,irto,4.074,51,31.4
+Daerah Istimewa Yogyakarta,10,ingo,4.051,62,4.8
+Daerah Khusus Ibukota Jakarta,1,_c,6.714,2972,1.1
+Daerah Khusus Ibukota Jakarta,2,_ci,6.387,1578,1.5
+Daerah Khusus Ibukota Jakarta,3,kare,5.689,121,5.0
+Daerah Khusus Ibukota Jakarta,4,akas,5.637,47,4.3
+Daerah Khusus Ibukota Jakarta,5,ment,5.497,84,4.8
+Daerah Khusus Ibukota Jakarta,6,ci,5.34,1891,1.3
+Daerah Khusus Ibukota Jakarta,7,tan_,5.189,1199,2.4
+Daerah Khusus Ibukota Jakarta,8,_raw,5.056,144,6.9
+Daerah Khusus Ibukota Jakarta,9,elon,4.936,31,3.2
+Daerah Khusus Ibukota Jakarta,10,gki_,4.736,33,3.0
+Gorontalo,1,hu,6.764,1083,9.1
+Gorontalo,2,mana,5.515,217,1.4
+Gorontalo,3,aa_,5.273,71,28.2
+Gorontalo,4,ohu,4.887,51,60.8
+Gorontalo,5,ngo,4.769,572,10.0
+Gorontalo,6,o_,4.716,9436,2.4
+Gorontalo,7,_mo,4.581,736,7.7
+Gorontalo,8,du,4.487,3016,2.3
+Gorontalo,9,a_,4.447,16911,1.6
+Gorontalo,10,ngo_,4.422,205,21.5
+Jambi,1,o_,9.264,9436,2.8
+Jambi,2,n_,5.239,13981,2.2
+Jambi,3,_s,4.742,14426,2.9
+Jambi,4,un_,4.582,1090,6.3
+Jambi,5,h_,4.486,4601,3.7
+Jambi,6,koto,4.438,273,27.8
+Jambi,7,_p,4.184,11549,3.0
+Jambi,8,_r,4.0,3757,3.9
+Jambi,9,k_,3.931,5505,3.6
+Jambi,10,_aro,3.863,51,15.7
+Jawa Barat,1,_ci,8.829,1578,68.4
+Jawa Barat,2,ci,7.948,1891,58.3
+Jawa Barat,3,eu,5.719,2092,8.8
+Jawa Barat,4,_c,4.921,2972,39.5
+Jawa Barat,5,ja,4.707,5566,16.2
+Jawa Barat,6,_lor,4.406,197,23.4
+Jawa Barat,7,lor_,3.93,264,18.9
+Jawa Barat,8,ar,3.743,16472,11.7
+Jawa Barat,9,jay,3.543,1764,23.1
+Jawa Barat,10,suka,3.541,1319,38.5
+Jawa Tengah,1,kali,4.823,617,42.8
+Jawa Tengah,2,lor_,4.206,264,39.0
+Jawa Tengah,3,_ng,4.061,745,33.4
+Jawa Tengah,4,sari,3.922,2385,25.4
+Jawa Tengah,5,_tl,3.578,134,62.7
+Jawa Tengah,6,_sok,3.447,68,54.4
+Jawa Tengah,7,_lor,3.147,197,38.6
+Jawa Tengah,8,jo,3.064,3140,30.4
+Jawa Tengah,9,gond,2.965,117,47.9
+Jawa Tengah,10,idul,2.889,245,42.0
+Jawa Timur,1,_ng,5.378,745,39.9
+Jawa Timur,2,suko,4.218,292,59.2
+Jawa Timur,3,bend,3.731,144,40.3
+Jawa Timur,4,uko,3.54,379,48.8
+Jawa Timur,5,kali,3.457,617,19.8
+Jawa Timur,6,lor_,3.39,264,34.1
+Jawa Timur,7,laok,3.281,38,92.1
+Jawa Timur,8,_lao,3.272,53,66.0
+Jawa Timur,9,watu,3.186,229,13.5
+Jawa Timur,10,_tl,3.071,134,32.8
+Kalimantan Barat,1,_nan,6.62,377,39.5
+Kalimantan Barat,2,k_,6.351,5505,5.0
+Kalimantan Barat,3,ai_,4.504,2247,13.9
+Kalimantan Barat,4,au_,4.353,1304,10.6
+Kalimantan Barat,5,_se,4.23,3202,8.4
+Kalimantan Barat,6,_en,3.981,128,22.7
+Kalimantan Barat,7,_s,3.967,14426,4.3
+Kalimantan Barat,8,ns,3.922,408,8.3
+Kalimantan Barat,9,_eng,3.746,40,40.0
+Kalimantan Barat,10,lim,3.688,623,4.5
+Kalimantan Selatan,1,_lok,5.638,76,34.2
+Kalimantan Selatan,2,muru,5.006,78,41.0
+Kalimantan Selatan,3,nua_,4.194,177,18.6
+Kalimantan Selatan,4,ulan,4.185,376,5.1
+Kalimantan Selatan,5,_ha,4.124,881,13.3
+Kalimantan Selatan,6,_h,4.116,2268,9.2
+Kalimantan Selatan,7,_jar,3.768,41,17.1
+Kalimantan Selatan,8,ulin,3.764,63,28.6
+Kalimantan Selatan,9,ramp,3.585,57,12.3
+Kalimantan Selatan,10,au_,3.547,1304,9.2
+Kalimantan Tengah,1,tumb,6.159,265,71.3
+Kalimantan Tengah,2,lat_,5.825,84,11.9
+Kalimantan Tengah,3,ei_,5.403,321,22.7
+Kalimantan Tengah,4,pend,5.167,74,18.9
+Kalimantan Tengah,5,bena,4.936,48,14.6
+Kalimantan Tengah,6,n_,4.852,13981,2.4
+Kalimantan Tengah,7,umba,4.835,459,42.0
+Kalimantan Tengah,8,_tum,4.521,338,56.8
+Kalimantan Tengah,9,en_,4.333,1034,2.5
+Kalimantan Tengah,10,runa,4.31,34,20.6
+Kalimantan Timur,1,q_,12.023,69,87.0
+Kalimantan Timur,2,_lo,5.447,949,8.4
+Kalimantan Timur,3,aq,5.018,41,78.0
+Kalimantan Timur,4,_asa,4.738,117,11.1
+Kalimantan Timur,5,_l,4.708,6562,2.8
+Kalimantan Timur,6,n_,4.633,13981,1.6
+Kalimantan Timur,7,_jon,4.461,51,11.8
+Kalimantan Timur,8,_ana,4.447,65,4.6
+Kalimantan Timur,9,aq_,4.312,39,79.5
+Kalimantan Timur,10,endi,4.296,60,13.3
+Kalimantan Utara,1,_lon,9.041,215,37.2
+Kalimantan Utara,2,a'_,6.077,64,68.8
+Kalimantan Utara,3,_pa',5.738,60,68.3
+Kalimantan Utara,4,'_,5.385,98,44.9
+Kalimantan Utara,5,ong_,5.147,1841,4.7
+Kalimantan Utara,6,_l,4.825,6562,2.1
+Kalimantan Utara,7,pa'_,4.67,41,95.1
+Kalimantan Utara,8,on_,4.587,1164,0.8
+Kalimantan Utara,9,ata_,4.585,284,2.1
+Kalimantan Utara,10,long,4.497,453,17.9
+Kepulauan Bangka Belitung,1,k_,5.507,5505,1.0
+Kepulauan Bangka Belitung,2,_ai,5.008,440,8.2
+Kepulauan Bangka Belitung,3,lala,4.698,144,2.8
+Kepulauan Bangka Belitung,4,gka_,4.661,167,1.8
+Kepulauan Bangka Belitung,5,ik_,4.567,605,3.0
+Kepulauan Bangka Belitung,6,labu,4.547,219,1.8
+Kepulauan Bangka Belitung,7,nar_,4.484,121,5.0
+Kepulauan Bangka Belitung,8,pur_,4.459,68,4.4
+Kepulauan Bangka Belitung,9,ndi_,4.362,155,2.6
+Kepulauan Bangka Belitung,10,angk,4.306,1093,1.1
+Kepulauan Riau,1,kelo,5.099,30,6.7
+Kepulauan Riau,2,k_,5.005,5505,1.0
+Kepulauan Riau,3,mpa_,4.796,82,7.3
+Kepulauan Riau,4,buru,4.664,65,3.1
+Kepulauan Riau,5,mant,4.51,156,1.9
+Kepulauan Riau,6,paya,4.51,294,3.1
+Kepulauan Riau,7,iant,4.493,36,5.6
+Kepulauan Riau,8,umbi,4.389,47,4.3
+Kepulauan Riau,9,laka,4.36,128,3.1
+Kepulauan Riau,10,_mor,4.315,76,3.9
+Lampung,1,way_,5.88,101,78.2
+Lampung,2,ay_,5.4,201,43.3
+Lampung,3,_rat,4.288,144,49.3
+Lampung,4,gedu,4.133,80,58.8
+Lampung,5,_neg,3.694,211,51.2
+Lampung,6,a_,3.693,16911,5.1
+Lampung,7,_way,3.62,122,64.8
+Lampung,8,y_,3.586,414,21.0
+Lampung,9,atar,3.56,174,18.4
+Lampung,10,_c,3.511,2972,2.3
+Maluku,1,wae,6.734,124,43.5
+Maluku,2,y_,6.101,414,11.6
+Maluku,3,_wae,5.404,99,51.5
+Maluku,4,wa,4.532,4804,4.8
+Maluku,5,_el,4.494,45,35.6
+Maluku,6,_rum,4.461,104,22.1
+Maluku,7,th,4.441,67,29.9
+Maluku,8,nana,4.321,36,13.9
+Maluku,9,ohoi,4.288,42,97.6
+Maluku,10,_bas,4.274,71,8.5
+Maluku Utara,1,_ake,7.386,32,84.4
+Maluku Utara,2,_wai,6.112,164,20.7
+Maluku Utara,3,_gam,5.716,199,13.6
+Maluku Utara,4,_aru,5.699,68,8.8
+Maluku Utara,5,a_,5.128,16911,2.3
+Maluku Utara,6,mat_,4.97,141,5.7
+Maluku Utara,7,soa,4.529,44,50.0
+Maluku Utara,8,nas_,4.481,86,5.8
+Maluku Utara,9,_f,4.316,308,9.7
+Maluku Utara,10,li_,4.107,851,4.6
+Nusa Tenggara Barat,1,e_,5.585,4516,2.0
+Nusa Tenggara Barat,2,dasa,4.791,46,26.1
+Nusa Tenggara Barat,3,k_,4.339,5505,2.5
+Nusa Tenggara Barat,4,_das,4.28,32,37.5
+Nusa Tenggara Barat,5,_gap,4.233,30,13.3
+Nusa Tenggara Barat,6,tump,4.199,56,5.4
+Nusa Tenggara Barat,7,rato,4.193,34,14.7
+Nusa Tenggara Barat,8,mpas,4.161,38,10.5
+Nusa Tenggara Barat,9,kuan,4.015,95,3.2
+Nusa Tenggara Barat,10,pand,3.973,298,2.3
+Nusa Tenggara Timur,1,oe,7.384,348,46.8
+Nusa Tenggara Timur,2,_oe,7.014,125,93.6
+Nusa Tenggara Timur,3,_n,5.753,2936,12.2
+Nusa Tenggara Timur,4,_nd,5.702,51,76.5
+Nusa Tenggara Timur,5,_mb,5.493,111,30.6
+Nusa Tenggara Timur,6,ae,5.114,837,15.3
+Nusa Tenggara Timur,7,a_,5.099,16911,6.4
+Nusa Tenggara Timur,8,wae_,4.972,36,80.6
+Nusa Tenggara Timur,9,e_,4.9,4516,8.5
+Nusa Tenggara Timur,10,_mau,4.887,56,58.9
+Papua,1,i_,5.234,12984,2.8
+Papua,2,_y,5.094,473,13.1
+Papua,3,br,4.572,316,8.9
+Papua,4,dori,4.368,33,69.7
+Papua,5,sk,4.352,70,17.1
+Papua,6,wa,4.243,4804,3.5
+Papua,7,ns,4.225,408,8.3
+Papua,8,ai,4.193,3749,3.4
+Papua,9,f_,4.148,72,18.1
+Papua,10,rar,4.03,107,12.1
+Papua Barat,1,y_,5.64,414,12.3
+Papua Barat,2,ye,4.598,377,7.2
+Papua Barat,3,wata,4.472,62,4.8
+Papua Barat,4,ei,4.405,437,8.7
+Papua Barat,5,adar,4.336,45,6.7
+Papua Barat,6,ou,4.214,270,9.3
+Papua Barat,7,wam,4.131,96,19.8
+Papua Barat,8,_u,3.979,1853,2.2
+Papua Barat,9,sara,3.949,194,2.1
+Papua Barat,10,ey,3.937,212,20.8
+Papua Barat Daya,1,_kla,6.846,182,51.6
+Papua Barat Daya,2,mala,6.703,286,10.8
+Papua Barat Daya,3,kla,6.062,209,45.5
+Papua Barat Daya,4,f_,4.682,72,34.7
+Papua Barat Daya,5,kl,4.414,402,24.4
+Papua Barat Daya,6,kari,4.37,61,8.2
+Papua Barat Daya,7,m_,4.235,2202,3.5
+Papua Barat Daya,8,mate,4.226,32,9.4
+Papua Barat Daya,9,_kl,4.218,315,30.2
+Papua Barat Daya,10,_i,4.129,1137,3.2
+Papua Pegunungan,1,ma_,6.634,912,25.1
+Papua Pegunungan,2,me_,6.377,379,42.2
+Papua Pegunungan,3,_y,6.368,473,36.2
+Papua Pegunungan,4,_ok,6.177,60,70.0
+Papua Pegunungan,5,ban_,5.136,336,4.5
+Papua Pegunungan,6,m_,3.827,2202,8.4
+Papua Pegunungan,7,md,3.63,42,35.7
+Papua Pegunungan,8,aima,3.614,58,29.3
+Papua Pegunungan,9,ld,3.601,43,30.2
+Papua Pegunungan,10,wi_,3.563,230,17.0
+Papua Selatan,1,_y,6.876,473,8.9
+Papua Selatan,2,mk,5.044,48,27.1
+Papua Selatan,3,_a,4.872,4488,1.7
+Papua Selatan,4,w_,4.805,87,11.5
+Papua Selatan,5,p_,4.498,729,4.7
+Papua Selatan,6,uli_,4.337,196,1.0
+Papua Selatan,7,nana,4.136,36,5.6
+Papua Selatan,8,op_,3.998,77,14.3
+Papua Selatan,9,_er,3.939,44,13.6
+Papua Selatan,10,_w,3.937,3433,1.8
+Papua Tengah,1,me_,6.453,379,19.3
+Papua Tengah,2,tadi,5.647,35,74.3
+Papua Tengah,3,ou,5.211,270,18.5
+Papua Tengah,4,siga,5.044,68,29.4
+Papua Tengah,5,_y,4.721,473,13.1
+Papua Tengah,6,pan_,4.613,466,1.3
+Papua Tengah,7,bet_,4.608,32,25.0
+Papua Tengah,8,_wu,4.301,175,14.3
+Papua Tengah,9,neri,4.168,40,35.0
+Papua Tengah,10,but_,4.136,48,33.3
+Riau,1,ai,5.592,3749,8.7
+Riau,2,ulau,5.04,326,20.9
+Riau,3,au,4.689,2350,6.6
+Riau,4,baga,4.337,120,25.0
+Riau,5,an_,4.048,9820,3.2
+Riau,6,_s,3.764,14426,3.7
+Riau,7,agan,3.657,195,15.9
+Riau,8,ngai,3.643,972,15.0
+Riau,9,lau,3.567,562,12.8
+Riau,10,gkal,3.477,235,13.6
+Sulawesi Barat,1,salu,7.781,113,36.3
+Sulawesi Barat,2,tt,6.162,234,9.0
+Sulawesi Barat,3,kk,5.97,129,14.0
+Sulawesi Barat,4,ulai,5.635,38,5.3
+Sulawesi Barat,5,ll,5.213,343,9.0
+Sulawesi Barat,6,mm,4.996,45,20.0
+Sulawesi Barat,7,ss,4.975,191,7.3
+Sulawesi Barat,8,bana,4.861,98,6.1
+Sulawesi Barat,9,pp,4.785,113,10.6
+Sulawesi Barat,10,ango,4.642,163,4.3
+Sulawesi Selatan,1,nr,6.982,207,51.7
+Sulawesi Selatan,2,pp,6.589,113,76.1
+Sulawesi Selatan,3,bont,5.874,181,83.4
+Sulawesi Selatan,4,ll,5.835,343,50.7
+Sulawesi Selatan,5,tt,5.818,234,70.9
+Sulawesi Selatan,6,kk,5.794,129,52.7
+Sulawesi Selatan,7,e_,5.681,4516,10.4
+Sulawesi Selatan,8,dd,5.45,54,53.7
+Sulawesi Selatan,9,ss,5.235,191,42.4
+Sulawesi Selatan,10,bb,5.01,58,72.4
+Sulawesi Tengah,1,_ue,6.004,34,61.8
+Sulawesi Tengah,2,_ogo,5.658,32,68.8
+Sulawesi Tengah,3,_a_,4.942,33,21.2
+Sulawesi Tengah,4,_b_,4.234,38,18.4
+Sulawesi Tengah,5,mbar,3.988,183,8.2
+Sulawesi Tengah,6,_og,3.925,53,45.3
+Sulawesi Tengah,7,a_,3.702,16911,3.5
+Sulawesi Tengah,8,_to,3.668,967,12.7
+Sulawesi Tengah,9,unta,3.575,71,14.1
+Sulawesi Tengah,10,baho,3.54,30,43.3
+Sulawesi Tenggara,1,a_,6.5,16911,5.7
+Sulawesi Tenggara,2,ea,5.978,585,15.7
+Sulawesi Tenggara,3,oe,5.493,348,9.2
+Sulawesi Tenggara,4,_la,5.376,2770,13.5
+Sulawesi Tenggara,5,ao,4.739,430,11.4
+Sulawesi Tenggara,6,e_,4.649,4516,5.5
+Sulawesi Tenggara,7,uu,4.627,135,51.9
+Sulawesi Tenggara,8,puu,4.575,94,70.2
+Sulawesi Tenggara,9,_puu,4.519,89,73.0
+Sulawesi Tenggara,10,wu,4.063,749,11.7
+Sulawesi Utara,1,satu,5.844,201,62.7
+Sulawesi Utara,2,ow_,5.149,31,71.0
+Sulawesi Utara,3,lola,5.057,41,36.6
+Sulawesi Utara,4,rano,4.999,69,27.5
+Sulawesi Utara,5,aa,4.562,427,14.1
+Sulawesi Utara,6,_dua,4.502,307,27.7
+Sulawesi Utara,7,_sat,4.21,221,57.0
+Sulawesi Utara,8,w_,4.11,87,32.2
+Sulawesi Utara,9,send,4.084,143,6.3
+Sulawesi Utara,10,liku,3.926,45,33.3
+Sumatera Barat,1,k_,7.013,5505,4.8
+Sumatera Barat,2,o_,6.908,9436,2.9
+Sumatera Barat,3,ua,6.456,3061,5.6
+Sumatera Barat,4,ek_,6.083,585,6.5
+Sumatera Barat,5,h_,5.981,4601,4.5
+Sumatera Barat,6,koto,5.742,273,49.5
+Sumatera Barat,7,_si,5.615,3296,3.7
+Sumatera Barat,8,uaro,5.338,37,43.2
+Sumatera Barat,9,ai,4.935,3749,6.2
+Sumatera Barat,10,_s,4.93,14426,2.4
+Sumatera Selatan,1,_s,4.624,14426,5.7
+Sumatera Selatan,2,s_,4.086,2240,6.4
+Sumatera Selatan,3,_r,3.757,3757,7.4
+Sumatera Selatan,4,n_,3.507,13981,3.9
+Sumatera Selatan,5,r_,3.419,6898,7.3
+Sumatera Selatan,6,_har,3.406,390,11.8
+Sumatera Selatan,7,o_,3.256,9436,2.4
+Sumatera Selatan,8,ang_,3.209,8210,7.3
+Sumatera Selatan,9,_n,3.195,2936,3.6
+Sumatera Selatan,10,man_,3.188,470,7.4
+Sumatera Utara,1,_si,7.31,3296,31.6
+Sumatera Utara,2,_lau,5.573,143,39.2
+Sumatera Utara,3,julu,5.259,126,94.4
+Sumatera Utara,4,ae,5.189,837,37.8
+Sumatera Utara,5,_h,5.161,2268,30.8
+Sumatera Utara,6,si,5.114,5069,23.7
+Sumatera Utara,7,hili,4.961,530,61.7
+Sumatera Utara,8,_aek,4.916,160,100.0
+Sumatera Utara,9,_s,4.844,14426,12.5
+Sumatera Utara,10,ao,4.417,430,27.9

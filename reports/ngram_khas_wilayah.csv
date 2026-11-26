@@ -1,0 +1,71 @@
+wilayah,peringkat,ngram,koefisien,jumlah_desa,persen_di_wilayah
+Bali dan Nusa Tenggara,1,_oe,7.23,125,93.6
+Bali dan Nusa Tenggara,2,_nd,6.604,51,80.4
+Bali dan Nusa Tenggara,3,wae_,6.157,36,80.6
+Bali dan Nusa Tenggara,4,_n,6.096,2936,14.0
+Bali dan Nusa Tenggara,5,oe,5.807,348,46.8
+Bali dan Nusa Tenggara,6,wolo,5.1,76,75.0
+Bali dan Nusa Tenggara,7,_mau,5.038,56,58.9
+Bali dan Nusa Tenggara,8,fatu,4.875,47,95.7
+Bali dan Nusa Tenggara,9,_gol,4.842,111,78.4
+Bali dan Nusa Tenggara,10,a_,4.531,16911,8.9
+Jawa,1,_ci,7.14,1578,90.1
+Jawa,2,bend,6.494,144,83.3
+Jawa,3,ci,6.482,1891,80.5
+Jawa,4,lor_,5.856,264,93.9
+Jawa,5,weta,5.473,278,96.8
+Jawa,6,waru,4.893,144,69.4
+Jawa,7,kali,4.84,617,74.1
+Jawa,8,sari,4.615,2385,69.4
+Jawa,9,_lor,4.588,197,91.9
+Jawa,10,_ng,4.567,745,76.4
+Kalimantan,1,q_,8.214,69,88.4
+Kalimantan,2,n_,6.273,13981,10.9
+Kalimantan,3,au_,6.074,1304,32.4
+Kalimantan,4,k_,6.031,5505,11.7
+Kalimantan,5,_se,5.554,3202,18.5
+Kalimantan,6,ai_,5.408,2247,32.4
+Kalimantan,7,_s,5.329,14426,11.6
+Kalimantan,8,h_,5.264,4601,10.0
+Kalimantan,9,tumb,5.086,265,73.6
+Kalimantan,10,_lon,5.033,215,64.7
+Maluku,1,_ake,7.75,32,87.5
+Maluku,2,wae,7.152,124,44.4
+Maluku,3,nana,6.163,36,22.2
+Maluku,4,y_,5.577,414,14.0
+Maluku,5,soa,5.339,44,56.8
+Maluku,6,_rum,5.296,104,24.0
+Maluku,7,lamo,5.04,78,28.2
+Maluku,8,ohoi,4.978,42,97.6
+Maluku,9,_el,4.902,45,37.8
+Maluku,10,_f,4.879,308,17.5
+Papua,1,_y,7.163,473,81.6
+Papua,2,me_,5.572,379,63.9
+Papua,3,kla,4.978,209,50.7
+Papua,4,_kla,4.857,182,52.7
+Papua,5,tadi,4.554,35,74.3
+Papua,6,gelo,4.355,34,38.2
+Papua,7,ban_,4.289,336,6.2
+Papua,8,gun_,4.277,329,9.1
+Papua,9,_ok,4.17,60,81.7
+Papua,10,_aya,4.006,37,56.8
+Sulawesi,1,pp,5.429,113,88.5
+Sulawesi,2,rano,5.105,69,79.7
+Sulawesi,3,uu,4.991,135,65.9
+Sulawesi,4,kk,4.958,129,68.2
+Sulawesi,5,nr,4.832,207,54.1
+Sulawesi,6,_ue,4.793,34,79.4
+Sulawesi,7,cc,4.715,39,100.0
+Sulawesi,8,tt,4.625,234,84.2
+Sulawesi,9,onto,4.603,230,79.6
+Sulawesi,10,satu,4.481,201,68.7
+Sumatera,1,eu,11.469,2092,84.5
+Sumatera,2,_s,7.97,14426,42.1
+Sumatera,3,h_,7.018,4601,55.3
+Sumatera,4,k_,6.766,5505,49.9
+Sumatera,5,t_,6.68,3728,49.2
+Sumatera,6,way_,6.648,101,88.1
+Sumatera,7,_si,6.213,3296,57.5
+Sumatera,8,n_,5.971,13981,32.6
+Sumatera,9,o_,5.761,9436,26.8
+Sumatera,10,_p,5.701,11549,42.6
