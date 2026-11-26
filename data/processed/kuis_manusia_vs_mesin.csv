@@ -1,0 +1,6 @@
+no,nama,jawaban,tebakan_mesin,keyakinan_mesin,top3_mesin,mesin_benar
+1,Sumengko,"Kabupaten Gresik, Jawa Timur",Sulawesi Utara,0.28,"Sulawesi Utara, Nusa Tenggara Barat, Jawa Timur",False
+2,Lampanah Baro,"Kabupaten Aceh Besar, Aceh",Aceh,0.72,"Aceh, Sulawesi Selatan, Jambi",True
+3,Wonua Morini,"Kabupaten Konawe, Sulawesi Tenggara",Sulawesi Tenggara,0.89,"Sulawesi Tenggara, Papua, Papua Tengah",True
+4,Wanasaba Daya,"Kabupaten Lombok Timur, Nusa Tenggara Barat",Bali,0.22,"Bali, Sulawesi Tengah, Maluku Utara",False
+5,Ubiyau,"Kabupaten Keerom, Papua",Papua Tengah,0.19,"Papua Tengah, Papua Barat, Papua Selatan",False

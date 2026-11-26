@@ -1,0 +1,351 @@
+wilayah,nama_karangan,tebakan_model,keyakinan,dikenali,orde
+Sumatera,alue gunung,Sumatera,0.984,True,3
+Sumatera,tebintanji,Sumatera,0.638,True,3
+Sumatera,keurang,Sumatera,0.9,True,3
+Sumatera,lau khapa,Sumatera,0.699,True,3
+Sumatera,tembau,Kalimantan,0.862,False,3
+Sumatera,ribun sialar,Sumatera,0.907,True,3
+Sumatera,lamngai lue,Sumatera,0.989,True,3
+Sumatera,beughek,Sumatera,0.719,True,3
+Sumatera,muning,Kalimantan,0.346,False,3
+Sumatera,pulare'o sempane,Sumatera,0.658,True,3
+Sumatera,baen,Bali dan Nusa Tenggara,0.771,False,3
+Sumatera,telue rubukitolang tung,Sumatera,0.993,True,3
+Sumatera,gunungah,Jawa,0.426,False,3
+Sumatera,epinago sak,Papua,0.665,False,3
+Sumatera,tri seluk sembandaruman,Kalimantan,0.519,False,3
+Sumatera,sei pulan,Sumatera,0.629,True,3
+Sumatera,deran tuhegeri,Sumatera,0.892,True,3
+Sumatera,nampohole,Sumatera,0.249,True,3
+Sumatera,jabumi sako,Sumatera,0.927,True,3
+Sumatera,bahan,Sumatera,0.549,True,3
+Sumatera,mer hilahunas muli,Sumatera,0.845,True,3
+Sumatera,tang krestu,Maluku,0.386,False,3
+Sumatera,koto makmur,Sumatera,0.955,True,3
+Sumatera,sirai,Papua,0.368,False,3
+Sumatera,lahan bara,Sumatera,0.737,True,3
+Sumatera,duriamak,Sumatera,0.405,True,3
+Sumatera,alue tinggi mudon,Sumatera,0.993,True,3
+Sumatera,sibi tigadapohroh,Sumatera,0.926,True,3
+Sumatera,bawa,Bali dan Nusa Tenggara,0.328,False,3
+Sumatera,lubukit baru,Sumatera,0.912,True,3
+Sumatera,matarat,Sulawesi,0.71,False,3
+Sumatera,sido,Sumatera,0.382,True,3
+Sumatera,seup,Sumatera,0.833,True,3
+Sumatera,kal sakti,Sumatera,0.825,True,3
+Sumatera,theu,Maluku,0.68,False,3
+Sumatera,sei tumberak,Kalimantan,0.864,False,3
+Sumatera,ruseumba matan,Sumatera,0.91,True,3
+Sumatera,bukit krueng,Sumatera,0.977,True,3
+Sumatera,lubukit kai barat,Sumatera,0.883,True,3
+Sumatera,sawe tanji nang gadora,Sumatera,0.862,True,3
+Sumatera,pak gu,Kalimantan,0.467,False,3
+Sumatera,buk lamatas,Sumatera,0.398,True,3
+Sumatera,peuran gersedak,Sumatera,0.701,True,3
+Sumatera,tang kumpaing,Kalimantan,0.779,False,3
+Sumatera,prian,Bali dan Nusa Tenggara,0.348,False,3
+Sumatera,ulanding,Kalimantan,0.415,False,3
+Sumatera,takean musaik,Sumatera,0.641,True,3
+Sumatera,taram buntaran,Sumatera,0.496,True,3
+Sumatera,embandian,Sumatera,0.439,True,3
+Sumatera,gedak,Jawa,0.53,False,3
+Jawa,kedungrambermargambo,Jawa,0.998,True,3
+Jawa,bancangan baharunangsari,Jawa,0.777,True,3
+Jawa,sukan,Jawa,0.672,True,3
+Jawa,campundujayangung,Jawa,0.978,True,3
+Jawa,cabela,Jawa,0.233,True,3
+Jawa,pamolowanlor,Jawa,0.953,True,3
+Jawa,sing,Sumatera,0.619,False,3
+Jawa,miruyu,Jawa,0.445,True,3
+Jawa,kalik,Jawa,0.617,True,3
+Jawa,somoyo,Jawa,0.834,True,3
+Jawa,belarantambo,Sulawesi,0.436,False,3
+Jawa,legeswing,Jawa,0.475,True,3
+Jawa,ambanjangunungpati,Jawa,0.815,True,3
+Jawa,solodong,Sulawesi,0.364,False,3
+Jawa,padawungpasirnaga mesu,Jawa,0.964,True,3
+Jawa,cilajo,Jawa,0.971,True,3
+Jawa,paisari,Jawa,0.303,True,3
+Jawa,geja,Bali dan Nusa Tenggara,0.377,False,3
+Jawa,kalir,Jawa,0.903,True,3
+Jawa,karates jaya,Jawa,0.714,True,3
+Jawa,banseranto,Sulawesi,0.397,False,3
+Jawa,malasblaketung,Jawa,0.707,True,3
+Jawa,kepanangrogoadik,Jawa,0.981,True,3
+Jawa,bencel,Jawa,0.796,True,3
+Jawa,kutan,Jawa,0.725,True,3
+Jawa,rojongkiru,Jawa,0.781,True,3
+Jawa,somuluk keleng,Kalimantan,0.559,False,3
+Jawa,sedalan,Jawa,0.807,True,3
+Jawa,cita,Jawa,0.934,True,3
+Jawa,nglau ilirejo,Sumatera,0.774,False,3
+Jawa,badri,Jawa,0.792,True,3
+Jawa,cilirapan,Jawa,0.987,True,3
+Jawa,kedongan,Jawa,0.789,True,3
+Jawa,jemsari,Jawa,0.834,True,3
+Jawa,prungan,Jawa,0.897,True,3
+Jawa,durug,Jawa,0.946,True,3
+Jawa,ciwangur,Jawa,0.971,True,3
+Jawa,cilowo,Jawa,0.855,True,3
+Jawa,sler,Jawa,0.891,True,3
+Jawa,guwoloprabayasari,Jawa,0.936,True,3
+Jawa,klecengan,Jawa,0.944,True,3
+Jawa,rawoharjowulan,Jawa,0.973,True,3
+Jawa,cipanjaran,Jawa,0.991,True,3
+Jawa,tampir,Bali dan Nusa Tenggara,0.41,False,3
+Jawa,bapurwondok makmekaran,Jawa,0.577,True,3
+Jawa,baduriam,Kalimantan,0.838,False,3
+Jawa,jawaleh,Maluku,0.433,False,3
+Jawa,gilong,Papua,0.749,False,3
+Jawa,pesahbandahangbaya,Jawa,0.771,True,3
+Jawa,gemirejo,Jawa,0.975,True,3
+Bali dan Nusa Tenggara,mokolong,Sulawesi,0.539,False,3
+Bali dan Nusa Tenggara,niumada olu,Bali dan Nusa Tenggara,0.852,True,3
+Bali dan Nusa Tenggara,busambaya,Sulawesi,0.799,False,3
+Bali dan Nusa Tenggara,toja,Bali dan Nusa Tenggara,0.568,True,3
+Bali dan Nusa Tenggara,wekmelibubulandewarat,Bali dan Nusa Tenggara,0.794,True,3
+Bali dan Nusa Tenggara,sina,Papua,0.377,False,3
+Bali dan Nusa Tenggara,naino,Bali dan Nusa Tenggara,0.383,True,3
+Bali dan Nusa Tenggara,kelela,Papua,0.81,False,3
+Bali dan Nusa Tenggara,nagedu,Bali dan Nusa Tenggara,0.518,True,3
+Bali dan Nusa Tenggara,kaowuji sainesu,Bali dan Nusa Tenggara,0.952,True,3
+Bali dan Nusa Tenggara,lewomanu utaran,Bali dan Nusa Tenggara,0.835,True,3
+Bali dan Nusa Tenggara,otondo ukka,Sulawesi,0.594,False,3
+Bali dan Nusa Tenggara,hungbaunung,Bali dan Nusa Tenggara,0.871,True,3
+Bali dan Nusa Tenggara,hauteas,Bali dan Nusa Tenggara,0.932,True,3
+Bali dan Nusa Tenggara,imuhu,Papua,0.351,False,3
+Bali dan Nusa Tenggara,pengak,Bali dan Nusa Tenggara,0.591,True,3
+Bali dan Nusa Tenggara,tandjadi,Bali dan Nusa Tenggara,0.64,True,3
+Bali dan Nusa Tenggara,jatis,Jawa,0.861,False,3
+Bali dan Nusa Tenggara,pidu,Bali dan Nusa Tenggara,0.552,True,3
+Bali dan Nusa Tenggara,wairta,Bali dan Nusa Tenggara,0.589,True,3
+Bali dan Nusa Tenggara,waimaraterewea,Bali dan Nusa Tenggara,0.848,True,3
+Bali dan Nusa Tenggara,kopidi papa seluk,Bali dan Nusa Tenggara,0.743,True,3
+Bali dan Nusa Tenggara,banjung,Jawa,0.487,False,3
+Bali dan Nusa Tenggara,pukamatakor,Bali dan Nusa Tenggara,0.851,True,3
+Bali dan Nusa Tenggara,halokong,Bali dan Nusa Tenggara,0.666,True,3
+Bali dan Nusa Tenggara,boboru,Maluku,0.708,False,3
+Bali dan Nusa Tenggara,oeselapi kaun tuta,Bali dan Nusa Tenggara,0.996,True,3
+Bali dan Nusa Tenggara,kuriwung,Bali dan Nusa Tenggara,0.767,True,3
+Bali dan Nusa Tenggara,tambal tentesebodok,Bali dan Nusa Tenggara,0.809,True,3
+Bali dan Nusa Tenggara,marga bour,Bali dan Nusa Tenggara,0.568,True,3
+Bali dan Nusa Tenggara,maur,Bali dan Nusa Tenggara,0.693,True,3
+Bali dan Nusa Tenggara,ndope,Bali dan Nusa Tenggara,0.806,True,3
+Bali dan Nusa Tenggara,kertaja,Bali dan Nusa Tenggara,0.623,True,3
+Bali dan Nusa Tenggara,wee matakang,Bali dan Nusa Tenggara,0.98,True,3
+Bali dan Nusa Tenggara,wole,Bali dan Nusa Tenggara,0.773,True,3
+Bali dan Nusa Tenggara,nang war,Kalimantan,0.613,False,3
+Bali dan Nusa Tenggara,natu radetuntianyange,Bali dan Nusa Tenggara,0.976,True,3
+Bali dan Nusa Tenggara,campagetengadang bara,Bali dan Nusa Tenggara,0.678,True,3
+Bali dan Nusa Tenggara,boda timuran,Sulawesi,0.484,False,3
+Bali dan Nusa Tenggara,teringkidang kanda,Kalimantan,0.422,False,3
+Bali dan Nusa Tenggara,sifanusambila,Bali dan Nusa Tenggara,0.631,True,3
+Bali dan Nusa Tenggara,sa'ateko bara,Bali dan Nusa Tenggara,0.441,True,3
+Bali dan Nusa Tenggara,labuli layubare,Bali dan Nusa Tenggara,0.55,True,3
+Bali dan Nusa Tenggara,mera,Maluku,0.684,False,3
+Bali dan Nusa Tenggara,fatu kauh yeh kecil,Bali dan Nusa Tenggara,0.866,True,3
+Bali dan Nusa Tenggara,peje,Bali dan Nusa Tenggara,0.979,True,3
+Bali dan Nusa Tenggara,tukadindem,Bali dan Nusa Tenggara,0.87,True,3
+Bali dan Nusa Tenggara,kalau,Kalimantan,0.47,False,3
+Bali dan Nusa Tenggara,lawajowatu sara,Bali dan Nusa Tenggara,0.67,True,3
+Bali dan Nusa Tenggara,tama,Sulawesi,0.333,False,3
+Kalimantan,binggiri,Papua,0.37,False,3
+Kalimantan,kal baru,Kalimantan,0.6,True,3
+Kalimantan,madya ung tenebambuk,Kalimantan,0.78,True,3
+Kalimantan,sunga senga manta,Kalimantan,0.824,True,3
+Kalimantan,intai rajawahang,Kalimantan,0.799,True,3
+Kalimantan,tambanjang nungang,Kalimantan,0.76,True,3
+Kalimantan,nangas rajuei,Kalimantan,0.938,True,3
+Kalimantan,babu,Bali dan Nusa Tenggara,0.316,False,3
+Kalimantan,mandurit salan,Kalimantan,0.833,True,3
+Kalimantan,bong dalang nad,Kalimantan,0.534,True,3
+Kalimantan,krio hilir,Kalimantan,0.757,True,3
+Kalimantan,sorengkerenginau tawah,Kalimantan,0.682,True,3
+Kalimantan,pari ulu,Kalimantan,0.636,True,3
+Kalimantan,sebinang,Kalimantan,0.709,True,3
+Kalimantan,hamancoh,Kalimantan,0.897,True,3
+Kalimantan,melingis,Sulawesi,0.299,False,3
+Kalimantan,hakti,Kalimantan,0.56,True,3
+Kalimantan,tampaka sari,Kalimantan,0.687,True,3
+Kalimantan,kelak merpat,Kalimantan,0.759,True,3
+Kalimantan,tanjarek,Kalimantan,0.225,True,3
+Kalimantan,mulya,Papua,0.292,False,3
+Kalimantan,perlu,Sumatera,0.508,False,3
+Kalimantan,siwun,Sulawesi,0.273,False,3
+Kalimantan,pilan,Jawa,0.601,False,3
+Kalimantan,sebulu,Kalimantan,0.935,True,3
+Kalimantan,kumai,Papua,0.588,False,3
+Kalimantan,sung,Kalimantan,0.841,True,3
+Kalimantan,riam kirik,Kalimantan,0.904,True,3
+Kalimantan,long raya,Kalimantan,0.996,True,3
+Kalimantan,sungan,Kalimantan,0.684,True,3
+Kalimantan,tumbakanangkai permai,Kalimantan,0.925,True,3
+Kalimantan,seberang lam,Sumatera,0.695,False,3
+Kalimantan,palamawan,Kalimantan,0.807,True,3
+Kalimantan,kesum,Papua,0.371,False,3
+Kalimantan,pemaru,Bali dan Nusa Tenggara,0.702,False,3
+Kalimantan,telubuhaid,Kalimantan,0.406,True,3
+Kalimantan,bidai rayu,Kalimantan,0.731,True,3
+Kalimantan,sakarya inti,Kalimantan,0.673,True,3
+Kalimantan,benua sar bagar,Sumatera,0.522,False,3
+Kalimantan,tagua,Maluku,0.576,False,3
+Kalimantan,san asri,Sumatera,0.55,False,3
+Kalimantan,binjasang,Sumatera,0.485,False,3
+Kalimantan,marin,Papua,0.554,False,3
+Kalimantan,harakandah,Kalimantan,0.403,True,3
+Kalimantan,nan hulung satu,Kalimantan,0.964,True,3
+Kalimantan,kara indrung tunang,Sumatera,0.571,False,3
+Kalimantan,longkiang jayan,Kalimantan,0.981,True,3
+Kalimantan,sungai seloktabaru,Kalimantan,0.965,True,3
+Kalimantan,kale,Sulawesi,0.64,False,3
+Kalimantan,sabelangean,Sulawesi,0.392,False,3
+Sulawesi,longkokone,Sulawesi,0.522,True,3
+Sulawesi,meka,Bali dan Nusa Tenggara,0.686,False,3
+Sulawesi,belandahi,Sulawesi,0.593,True,3
+Sulawesi,bumbepuhak,Sulawesi,0.391,True,3
+Sulawesi,lenre,Sulawesi,0.934,True,3
+Sulawesi,tali,Sulawesi,0.482,True,3
+Sulawesi,lambambulotapuludu,Sulawesi,0.995,True,3
+Sulawesi,saluli,Maluku,0.95,False,3
+Sulawesi,laoge,Sulawesi,0.879,True,3
+Sulawesi,motungbanga,Sulawesi,0.59,True,3
+Sulawesi,kalo-oko lapato,Sulawesi,0.959,True,3
+Sulawesi,peka,Bali dan Nusa Tenggara,0.853,False,3
+Sulawesi,bohu bunga,Sulawesi,0.957,True,3
+Sulawesi,santulan,Bali dan Nusa Tenggara,0.609,False,3
+Sulawesi,nongko,Bali dan Nusa Tenggara,0.479,False,3
+Sulawesi,manennabar,Sulawesi,0.361,True,3
+Sulawesi,langkaindi,Sulawesi,0.819,True,3
+Sulawesi,tenge,Bali dan Nusa Tenggara,0.659,False,3
+Sulawesi,buya utara,Sulawesi,0.603,True,3
+Sulawesi,aleng uremboeding,Sulawesi,0.878,True,3
+Sulawesi,mooyobula,Sulawesi,0.916,True,3
+Sulawesi,teluhuta,Sulawesi,0.355,True,3
+Sulawesi,bonge,Sulawesi,0.76,True,3
+Sulawesi,tadaa,Sulawesi,0.985,True,3
+Sulawesi,laccimpokan,Sulawesi,0.965,True,3
+Sulawesi,momante,Sulawesi,0.9,True,3
+Sulawesi,cambubuntehimi,Sulawesi,0.836,True,3
+Sulawesi,atok dua mengan,Sumatera,0.455,False,3
+Sulawesi,adau,Kalimantan,0.38,False,3
+Sulawesi,ponto lerewarano,Sulawesi,0.964,True,3
+Sulawesi,nupa,Maluku,0.541,False,3
+Sulawesi,lang,Sumatera,0.542,False,3
+Sulawesi,cempaya utara,Sulawesi,0.36,True,3
+Sulawesi,mayoka majuara,Sulawesi,0.731,True,3
+Sulawesi,tominae,Sulawesi,0.762,True,3
+Sulawesi,pebu,Sulawesi,0.448,True,3
+Sulawesi,kalowosu panua jaya,Sulawesi,0.972,True,3
+Sulawesi,bebatusa,Sulawesi,0.657,True,3
+Sulawesi,salutampanak sarainanga,Sulawesi,0.611,True,3
+Sulawesi,mori utane bati,Sumatera,0.461,False,3
+Sulawesi,wamelemo rejo,Sulawesi,0.71,True,3
+Sulawesi,masi,Papua,0.344,False,3
+Sulawesi,eensugi,Sulawesi,0.848,True,3
+Sulawesi,kayuhundurisa,Sulawesi,0.792,True,3
+Sulawesi,sumandu,Jawa,0.385,False,3
+Sulawesi,taka,Bali dan Nusa Tenggara,0.776,False,3
+Sulawesi,mariga,Maluku,0.282,False,3
+Sulawesi,bintika,Sulawesi,0.474,True,3
+Sulawesi,tongan,Sumatera,0.338,False,3
+Sulawesi,matanabesian,Bali dan Nusa Tenggara,0.646,False,3
+Maluku,fuat,Maluku,0.842,True,3
+Maluku,rere,Maluku,0.396,True,3
+Maluku,ngolon,Maluku,0.552,True,3
+Maluku,tulin,Kalimantan,0.339,False,3
+Maluku,lokwirino,Maluku,0.977,True,3
+Maluku,aketewermafut,Maluku,0.986,True,3
+Maluku,woli,Maluku,0.729,True,3
+Maluku,wacici,Maluku,0.84,True,3
+Maluku,kwamor islamdehe,Maluku,0.991,True,3
+Maluku,gam kao,Maluku,0.925,True,3
+Maluku,tuguwarbubba,Maluku,0.926,True,3
+Maluku,kabalimatanggi,Maluku,0.308,True,3
+Maluku,cemang,Jawa,0.451,False,3
+Maluku,laiti,Sulawesi,0.784,False,3
+Maluku,galoa,Maluku,0.918,True,3
+Maluku,uwaturua,Maluku,0.814,True,3
+Maluku,werkuri,Maluku,0.596,True,3
+Maluku,braut,Papua,0.401,False,3
+Maluku,saumlaino,Maluku,0.951,True,3
+Maluku,wodadano,Maluku,0.678,True,3
+Maluku,kusurenrat,Maluku,0.909,True,3
+Maluku,tanjungirat,Maluku,0.65,True,3
+Maluku,tadi,Papua,0.526,False,3
+Maluku,amdesarial,Maluku,0.951,True,3
+Maluku,tuokulaut,Maluku,0.671,True,3
+Maluku,sian,Sumatera,0.557,False,3
+Maluku,taga,Maluku,0.667,True,3
+Maluku,tobolo,Maluku,0.671,True,3
+Maluku,benjung bati kramboanak,Sumatera,0.417,False,3
+Maluku,harenrahmatui,Maluku,0.84,True,3
+Maluku,modadara,Maluku,0.674,True,3
+Maluku,dowondorosagey,Maluku,0.956,True,3
+Maluku,tabatangat,Maluku,0.732,True,3
+Maluku,tosoma,Maluku,0.97,True,3
+Maluku,adopo,Maluku,0.939,True,3
+Maluku,gamo,Maluku,0.992,True,3
+Maluku,awermata baru,Maluku,0.616,True,3
+Maluku,siwara,Maluku,0.885,True,3
+Maluku,madiong,Maluku,0.321,True,3
+Maluku,ngowa,Maluku,0.917,True,3
+Maluku,hala-ngute goruang,Maluku,0.99,True,3
+Maluku,labatu,Maluku,0.608,True,3
+Maluku,sagun,Papua,0.339,False,3
+Maluku,kamahai,Maluku,0.736,True,3
+Maluku,ternaumlangowo,Maluku,0.968,True,3
+Maluku,lalagorellahayama,Maluku,0.987,True,3
+Maluku,rang,Kalimantan,0.567,False,3
+Maluku,tota,Maluku,0.364,True,3
+Maluku,rumefar,Maluku,0.989,True,3
+Maluku,sondoro,Bali dan Nusa Tenggara,0.281,False,3
+Papua,pagawiri,Papua,0.403,True,3
+Papua,gimbalo,Papua,0.783,True,3
+Papua,meigelowa,Papua,0.965,True,3
+Papua,klawonritokhoma,Papua,0.995,True,3
+Papua,sumbuan,Sulawesi,0.434,False,3
+Papua,yasio,Papua,0.776,True,3
+Papua,waiepinderek,Papua,0.942,True,3
+Papua,yinuaima,Papua,0.959,True,3
+Papua,yongma,Papua,0.994,True,3
+Papua,cabana,Jawa,0.373,False,3
+Papua,finggroma dua,Papua,0.974,True,3
+Papua,fatan,Bali dan Nusa Tenggara,0.786,False,3
+Papua,punbunim,Papua,0.926,True,3
+Papua,uwodua limaima,Papua,0.948,True,3
+Papua,mabuay,Papua,0.756,True,3
+Papua,panto,Sumatera,0.557,False,3
+Papua,fak jayanggun,Papua,0.889,True,3
+Papua,yili,Papua,0.935,True,3
+Papua,griwan,Jawa,0.77,False,3
+Papua,wanggeam,Papua,0.963,True,3
+Papua,aduf u,Maluku,0.653,False,3
+Papua,mandosuaman,Papua,0.389,True,3
+Papua,siriem,Papua,0.886,True,3
+Papua,yasakam oyi,Papua,0.955,True,3
+Papua,ubis kotu,Papua,0.926,True,3
+Papua,mege,Papua,0.819,True,3
+Papua,abmisawi,Papua,0.989,True,3
+Papua,simin,Maluku,0.494,False,3
+Papua,bundi,Papua,0.363,True,3
+Papua,kaimoro,Sulawesi,0.471,False,3
+Papua,kewarusiempasiur,Bali dan Nusa Tenggara,0.491,False,3
+Papua,ginegen,Papua,0.539,True,3
+Papua,nuoromba,Sulawesi,0.522,False,3
+Papua,fafarat,Papua,0.69,True,3
+Papua,wuyum,Papua,0.943,True,3
+Papua,pindabo,Papua,0.478,True,3
+Papua,kuar,Kalimantan,0.506,False,3
+Papua,manak,Bali dan Nusa Tenggara,0.356,False,3
+Papua,yorgo nawiam,Papua,0.988,True,3
+Papua,kambra,Papua,0.966,True,3
+Papua,yepiningrafi sahbukdu,Papua,0.996,True,3
+Papua,asak,Kalimantan,0.479,False,3
+Papua,aliseren,Papua,0.7,True,3
+Papua,kalpam,Papua,0.976,True,3
+Papua,ekobaiyo,Papua,0.87,True,3
+Papua,ugdohonuk,Papua,0.812,True,3
+Papua,yokano,Papua,0.979,True,3
+Papua,tenoma,Papua,0.867,True,3
+Papua,tiokani,Papua,0.848,True,3
+Papua,karsi,Papua,0.676,True,3
