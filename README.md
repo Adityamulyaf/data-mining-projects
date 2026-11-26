@@ -29,7 +29,7 @@ Kalau repo ini ada di dalam folder OneDrive, buat virtual environment di luar On
 ## Menjalankan
 
 - Notebook: buka folder `notebooks/` dan jalankan berurutan dari `01` sampai `05`.
-- Dashboard: `streamlit run app/streamlit_app.py`
+- Dashboard: `streamlit run app/streamlit_app.py` (dari folder root repo), lalu buka http://localhost:8501. Pembukaan pertama butuh beberapa detik untuk memuat model dan peta.
 
 ## Struktur folder
 
@@ -54,6 +54,14 @@ Data asli disimpan di `data/raw/wilayah.sql`, lalu diubah ke CSV dengan:
 ```bash
 python src/convert_wilayah.py
 ```
+
+Batas wilayah untuk peta (file `db/wilayah_level_1_2.sql` dari repo yang sama) diubah ke GeoJSON dengan:
+
+```bash
+python src/convert_geo.py
+```
+
+Hasilnya `data/geo/provinsi.geojson` (38 provinsi) dan `data/geo/kabupaten.geojson` (514 kabupaten/kota). File SQL-nya (24 MB) tidak di-commit; script di atas mengunduhnya sendiri kalau belum ada.
 
 Hasil pengecekan `data/raw/wilayah_2025.csv`:
 
