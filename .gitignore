@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Sistem operasi dan editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# File kunci sementara Office
+~$*
+
+# Catatan: data/processed/ dan models/ sengaja TIDAK diabaikan,
+# karena anggota lain membutuhkannya untuk bekerja paralel (lihat PLAN.md bagian 7).
