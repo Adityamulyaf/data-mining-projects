@@ -56,7 +56,7 @@ Penelitian sejenis yang bisa dijadikan pembanding di laporan:
 | Data | Sumber | Keterangan |
 |---|---|---|
 | Kode wilayah 2025 (utama) | github.com/cahyadsn/wilayah, file `db/wilayah.sql` (lisensi MIT) | Kepmendagri No 300.2.2-2138 Tahun 2025. Sudah diunduh ke `data/raw/wilayah.sql` dan diubah ke `data/raw/wilayah_2025.csv` dengan `src/convert_wilayah.py` |
-| Peta | github.com/cahyadsn/wilayah, file `db/wilayah_level_1_2.sql` | berisi batas wilayah provinsi dan kabupaten/kota. Isinya dicek di hari 1. Kalau tidak bisa dipakai, cari GeoJSON dari repo publik lain |
+| Peta | github.com/cahyadsn/wilayah, file `db/wilayah_level_1_2.sql` (lisensi MIT) | batas 38 provinsi dan 514 kabupaten/kota, sudah diubah ke `data/geo/provinsi.geojson` dan `data/geo/kabupaten.geojson` dengan `src/convert_geo.py`. Kodenya cocok 100 persen dengan dataset |
 | Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 10 |
 
 Sumber yang sempat direncanakan sebelumnya (github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025) tidak dipakai. Filenya ternyata Excel, bukan CSV, dan datanya dibuat dari hasil OCR dokumen PDF, sehingga nama desanya berisiko mengandung salah ketik.
@@ -81,7 +81,9 @@ data-mining-projects/
     raw/wilayah.sql            (data asli dari cahyadsn)
     raw/wilayah_2025.csv       (hasil convert_wilayah.py)
     processed/desa_clean.parquet
-    geo/                       (GeoJSON)
+    raw/wilayah_level_1_2.sql  (batas wilayah, 24 MB, tidak di-commit, diunduh otomatis oleh convert_geo.py)
+    geo/provinsi.geojson       (batas 38 provinsi)
+    geo/kabupaten.geojson      (batas 514 kabupaten/kota)
   notebooks/
     01_eda.ipynb               (distribusi, nama kembar, panjang nama)
     02_classification.ipynb    (NB vs LR vs SVM, RF opsional, 2 level label)
@@ -91,8 +93,10 @@ data-mining-projects/
   src/
     clean.py                   (normalisasi nama, dipakai notebook dan app)
     convert_wilayah.py         (ubah wilayah.sql menjadi wilayah_2025.csv)
+    convert_geo.py             (ubah wilayah_level_1_2.sql menjadi GeoJSON di data/geo/)
     build_dataset.py           (buat desa_clean.parquet dari wilayah_2025.csv)
     regions.py                 (pemetaan provinsi ke 7 wilayah besar)
+    peta.py                    (gambar peta provinsi/kabupaten dengan matplotlib, dipakai notebook 03 dan 04)
     generator.py               (model n-gram karakter untuk mengarang nama)
   models/                      (model terbaik, format joblib)
   app/
@@ -231,9 +235,12 @@ Supaya bisa kerja paralel tanpa saling tunggu, semua orang memakai nama file dan
 | `data/processed/desa_clean.parquet` | sudah ada | kolom: `kode_desa`, `nama_asli`, `nama_bersih`, `jenis`, `kode_kabupaten`, `kabupaten`, `kode_provinsi`, `provinsi`, `wilayah` (7 wilayah besar). Dibuat ulang dengan `python src/build_dataset.py` |
 | `models/best_provinsi.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target provinsi |
 | `models/best_wilayah.joblib` | Tahap 3 | pipeline TF-IDF + model terbaik untuk target wilayah besar |
-| `data/processed/klaster_kabupaten.csv` | Tahap 4 | kolom: `kabupaten`, `provinsi`, `klaster` |
-| `data/processed/kandidat_salah_kode.csv` | Tahap 5 | desa yang namanya sangat tidak cocok dengan provinsinya |
-| `data/processed/nama_karangan.csv` | Tahap 6 | kolom: `wilayah`, `nama_karangan`, `tebakan_model` |
+| `data/processed/klaster_kabupaten.csv` | sudah ada (Tahap 4) | kolom: `kode_kabupaten`, `kabupaten`, `provinsi`, `wilayah`, `klaster` (hasil utama), `klaster_kmeans`, `klaster_ward`, `nama_klaster`. Bisa langsung digambar dengan `src/peta.py` |
+| `data/processed/prediksi_oof.parquet` | sudah ada (Tahap 5) | `kode_desa` + 38 kolom probabilitas provinsi (out-of-fold, setiap desa ditebak model yang belum pernah melihat namanya). Urutan baris sama dengan `desa_clean.parquet` |
+| `data/processed/kandidat_salah_kode.csv` | sudah ada (Tahap 5) | kolom: `kode_desa`, `nama_asli`, `kabupaten`, `provinsi`, `tebakan`, `keyakinan`, `provinsi_lain_dengan_nama_sama` |
+| `reports/ngram_khas_provinsi.csv`, `reports/ngram_khas_wilayah.csv` | sudah ada (Tahap 5) | 10 n-gram paling khas per kelas, dengan koefisien, jumlah desa, dan persen desa yang ada di kelas itu. Dipakai dashboard |
+| `data/processed/nama_karangan.csv` | sudah ada (Tahap 6) | kolom: `wilayah`, `nama_karangan`, `tebakan_model`, `keyakinan`, `dikenali`, `orde`. 50 nama per wilayah |
+| `data/processed/kuis_asli_palsu.csv`, `data/processed/kuis_manusia_vs_mesin.csv` | sudah ada (Tahap 6) | bahan dua kuis presentasi, lengkap dengan kunci jawaban |
 | `reports/figures/` | semua tahap | semua grafik untuk laporan dan slide, format PNG |
 
 ### Tahap 0. Persiapan (hari 1, pagi, semua anggota)
@@ -251,11 +258,11 @@ Selesai jika: semua anggota bisa menjalankan `python -c "import sklearn, pandas,
 
 Langkah:
 1. Sudah selesai: data diunduh ke `data/raw/wilayah.sql` dan diubah menjadi `data/raw/wilayah_2025.csv` dengan `python src/convert_wilayah.py`. Hasil pengecekannya ada di bagian 4.
-2. Cek isi `db/wilayah_level_1_2.sql` dari cahyadsn untuk peta. Kalau batas wilayahnya bisa dipakai, ubah ke GeoJSON dan simpan di `data/geo/`.
+2. Sudah selesai: `python src/convert_geo.py` mengubah batas wilayah cahyadsn menjadi `data/geo/provinsi.geojson` (1,1 MB) dan `data/geo/kabupaten.geojson` (6,6 MB). Kode di GeoJSON (`id` fitur, misalnya "11" dan "11.01") sama dengan `kode_provinsi` dan `kode_kabupaten` di parquet, jadi bisa langsung dipakai di `plotly.express.choropleth` dengan `featureidkey="id"`.
 3. Sudah selesai: `src/clean.py` (aturan di 6.1) dan `src/regions.py` (38 provinsi ke 7 wilayah besar).
 4. Sudah selesai: `python src/build_dataset.py` menghasilkan `data/processed/desa_clean.parquet`.
 
-Status: **selesai kecuali langkah 2 (peta)**. Hasilnya:
+Status: **selesai**. Hasilnya:
 
 - 83.758 baris (4 singkatan dibuang dari 83.762), 62.769 nama bersih unik, 38 provinsi, 7 wilayah.
 - Tidak ada nilai kosong.
@@ -289,6 +296,24 @@ Langkah:
 
 Selesai jika: tabel 3 model x 2 target ada, dua file model tersimpan, dan assert split lolos.
 
+Status: **baseline selesai** (`notebooks/02_classification.ipynb`). Langkah 5 (tuning) dan 7 (Random Forest) belum, dilanjutkan P2.
+
+| Target | Model | Accuracy | Macro-F1 | Top-3 |
+|---|---|---|---|---|
+| Provinsi (38 kelas) | Pembanding: tebak kelas terbanyak | 0,100 | 0,005 | - |
+| | Naive Bayes | 0,419 | 0,304 | 0,648 |
+| | Logistic Regression | 0,401 | 0,330 | 0,642 |
+| | SVM | 0,402 | 0,328 | 0,620 |
+| Wilayah (7 kelas) | Pembanding: tebak kelas terbanyak | 0,307 | 0,067 | - |
+| | Naive Bayes | 0,654 | 0,541 | 0,899 |
+| | Logistic Regression | 0,651 | 0,557 | 0,892 |
+| | SVM | 0,678 | 0,571 | 0,895 |
+
+- Split per nama unik: 50.215 nama latih, 12.554 nama uji, tidak ada yang bocor.
+- Tebakan acak hanya 2,6 persen untuk provinsi, jadi akurasi 40 persen berarti sekitar 15 kali lebih baik dari acak.
+- Model yang disimpan untuk kedua target adalah **Logistic Regression**, dilatih ulang dengan seluruh data. Alasannya, selisih macro-F1 dengan model terbaik kecil (0 untuk provinsi, 0,014 untuk wilayah), dan hanya LR yang memberi probabilitas untuk dashboard serta koefisien untuk analisis n-gram khas.
+- File: `models/best_provinsi.joblib` (8,3 MB), `models/best_wilayah.joblib` (1,7 MB), `reports/metrics_baseline.csv`, `reports/figures/02_perbandingan_model.png`.
+
 ### Tahap 4. Klastering dan peta (hari 2 sampai 3, P3)
 
 Notebook: `03_clustering.ipynb`.
@@ -298,10 +323,22 @@ Langkah:
 2. Opsional: perkecil dimensi dengan TruncatedSVD.
 3. Jalankan K-Means dan Agglomerative (Ward) untuk beberapa nilai k, lalu pilih k terbaik dengan silhouette score.
 4. Hitung ARI terhadap provinsi asli.
-5. Buat peta berwarna sesuai klaster. Pakai batas kabupaten dari `data/geo/`, atau batas provinsi kalau versi kabupaten tidak bisa dipakai.
+5. Buat peta berwarna sesuai klaster. Pakai `data/geo/kabupaten.geojson` (sudah dicek: 514 kabupaten, semua kode cocok).
 6. Simpan `data/processed/klaster_kabupaten.csv`.
 
 Selesai jika: tabel silhouette dan ARI untuk kedua metode ada, peta tersimpan, dan file klaster tersimpan.
+
+Status: **selesai** (`notebooks/03_clustering.ipynb`). Pengaturan: vektor kabupaten = rata-rata TF-IDF nama desanya, TruncatedSVD 20 dimensi, k = 7, K-Means sebagai hasil utama (silhouette 0,247 vs Ward 0,222). Silhouette tertinggi sebenarnya di k = 13 (0,267), tetapi selisihnya kecil; k = 7 dipilih karena puncak lokal pertama, masih bisa dijelaskan, dan bisa dibandingkan langsung dengan 7 wilayah. Alasan ini harus ditulis terus terang di laporan.
+
+Temuan utama (bahan "wow" untuk presentasi):
+
+- Tanpa label apa pun, Pulau Jawa terbelah menjadi klaster Sunda (Jawa Barat, Banten) dan Jawa (Jawa Tengah, DIY, Jawa Timur).
+- Klaster memotong batas provinsi mengikuti batas suku: Aceh pesisir terpisah dari Gayo dan Alas; Sumatera Utara terbelah menjadi tanah Batak, pesisir Melayu, dan Nias; Kota Metro dan Pringsewu (Lampung) masuk klaster Jawa; kabupaten Dayak pedalaman di Kalimantan Tengah terpisah dari pesisir.
+- Sebagian besar Sumatera dan Kalimantan menjadi satu klaster Melayu.
+- Keterbatasan: Bali tidak membentuk klaster sendiri.
+- ARI terhadap 7 wilayah resmi: 0,42 (K-Means) dan 0,46 (Ward). ARI terhadap provinsi: 0,17 dan 0,18.
+
+Grafik: `03_pemilihan_k.png`, `03_peta_klaster.png`, `03_peta_klaster_pembanding.png`. Tabel: `reports/metrics_klastering.csv`, `reports/ringkasan_klaster.csv`.
 
 ### Tahap 5. N-gram khas dan analisis kesalahan (hari 3, P4)
 
@@ -314,6 +351,19 @@ Langkah:
 4. Kandidat salah kode wilayah: desa yang tebakan modelnya sangat yakin tapi berbeda dari label. Simpan ke `data/processed/kandidat_salah_kode.csv`.
 
 Selesai jika: tabel n-gram khas, confusion matrix, grafik transmigrasi, dan file kandidat salah kode sudah ada.
+
+Status: **selesai** (`notebooks/04_error_analysis.ipynb`). Catatan metode: analisis kesalahan memakai tebakan out-of-fold (GroupKFold 5 lipatan per nama unik), bukan model di `models/`, karena model itu sudah melihat semua desa. Hasilnya disimpan di `prediksi_oof.parquet`; hitung ulang sekitar 8 sampai 10 menit kalau file itu dihapus.
+
+Temuan utama:
+
+- N-gram khas cocok dengan pengetahuan bahasa daerah: `_ci` dan `eu` (Sunda), `eu`/`ie`/`blang` (Aceh), `pp`/`ll`/`kk`/`bont` (Bugis-Makassar), `oe` (Timor), `way` (Lampung), `koto` (Minang), `aek`/`lau` (Batak).
+- Kesalahan terbanyak antara provinsi bertetangga atau pemekaran: DIY ke Jawa Tengah 29 persen, Banten ke Jawa Barat 28 persen. Di tingkat wilayah, 26 persen desa Kalimantan ditebak Sumatera (kosakata Melayu yang sama).
+- Jejak transmigrasi: desa luar Jawa yang ditebak "Jawa" 8,4 persen di provinsi tujuan transmigrasi vs 4,3 persen di provinsi lain. Paling kuat di Lampung (16,3 persen), terutama Kota Metro (45 persen) dan Pringsewu (34 persen). Di Kalimantan dan Sulawesi Tengah tidak jauh di atas rata-rata.
+- Bukti tanpa model: 96 desa di luar Jawa memakai nama kabupaten/kota di Jawa (Purworejo, Sukoharjo, Banyumas, Klaten, Bantul, dan lain-lain), 41 di antaranya di Lampung.
+- Bali 17,9 persen ditebak Jawa, bukan karena transmigrasi tapi karena kedekatan budaya Jawa-Bali.
+- Kandidat salah kode wilayah hanya 62 desa (0,07 persen), sebagian besar nama pendek yang kebetulan mirip pola daerah lain. Tidak ditemukan tanda jelas kesalahan kode di data Kepmendagri 2025.
+
+Grafik: `04_ngram_khas.png`, `04_confusion_wilayah.png`, `04_transmigrasi_provinsi.png`, `04_peta_jejak_jawa.png`.
 
 ### Tahap 6. Generator nama desa (hari 2 sampai 3, P4)
 
@@ -328,6 +378,14 @@ Langkah:
 
 Selesai jika: file nama karangan ada, persentase tebakan benar sudah dilaporkan, dan bahan kuis siap.
 
+Status: **selesai** (`src/generator.py`, `notebooks/05_generator.ipynb`).
+
+- Orde dipilih dari perbandingan: orde 2 (90 persen baru, 55 persen dikenali), orde 3 (86 persen baru, 72 persen dikenali), orde 4 (69 persen baru, 74 persen dikenali). Orde 3 dipakai.
+- 350 nama karangan (50 per wilayah), 71 persen ditebak classifier sesuai wilayah asalnya (tebakan acak 14 persen). Paling mudah dikenali: Sulawesi (80 persen) dan Papua (78 persen); paling sulit: Sumatera (60 persen).
+- Contoh nama karangan: Cikayung, Lebangwetan (Jawa); Lubuk Simodo, Teluk Lam Ilit (Sumatera); Lintai Hilir (Kalimantan); Wugunggunome, Abagalo (Papua).
+- Kuis "Asli atau Palsu?": 10 nama siap di `kuis_asli_palsu.csv`. Kuis "Manusia vs Mesin": 5 nama di `kuis_manusia_vs_mesin.csv`, tebakan mesin diambil dari prediksi out-of-fold (mesin benar 2 dari 5, wajar karena akurasi provinsi sekitar 40 persen). Ganti `SEED` di notebook untuk set lain.
+- Catatan jujur untuk laporan: nama karangan cenderung memakai pola paling umum di wilayahnya, jadi wajar lebih mudah dikenali daripada nama asli (akurasi nama asli sekitar 65 persen).
+
 ### Tahap 7. Dashboard (hari 2 sampai 4, P5)
 
 Kode: `app/streamlit_app.py`.
@@ -339,6 +397,17 @@ Langkah:
 4. Uji dengan 10 nama desa asli (sebagian dari luar data latih) dan 3 nama karangan.
 
 Selesai jika: `streamlit run app/streamlit_app.py` berjalan dan keempat halaman berfungsi.
+
+Status: **selesai, versi pertama**. Keempat halaman berjalan dan sudah diuji (AppTest dan screenshot):
+
+1. **Tebak nama desa**: ketik nama, muncul 3 provinsi teratas, peta peluang per provinsi, dan huruf yang paling mendorong tebakan diwarnai langsung di nama desanya (dari koefisien LR).
+2. **Peta klaster**: peta kabupaten, bisa berganti antara K-Means, Ward, dan 7 wilayah resmi, plus tabel isi klaster.
+3. **Fakta menarik**: n-gram khas per provinsi (bisa dipilih), peta jejak transmigrasi per kabupaten, 20 nama desa paling umum, dan daftar nama yang "nyasar".
+4. **Generator dan kuis**: karang 6 nama per wilayah beserta tebakan classifier, kuis "Asli atau Palsu?" dengan skor, dan kuis "Manusia vs Mesin".
+
+Tampilan: tema warna kertas peta di `.streamlit/config.toml`, huruf Young Serif (judul dan nama desa) dan Public Sans (teks), dimuat dari Google Fonts, jadi butuh internet saat presentasi (kalau tidak ada, otomatis memakai huruf bawaan).
+
+Yang masih bisa dikerjakan P5: uji dengan 10 nama desa asli dan 3 nama karangan (langkah 4), rapikan teks, dan latihan demo. Peta kabupaten (6,6 MB) butuh beberapa detik saat pertama dibuka.
 
 ### Tahap 8. Laporan (hari 1 sampai 4, P5, semua anggota menyumbang)
 
