@@ -57,7 +57,7 @@ Penelitian sejenis yang bisa dijadikan pembanding di laporan:
 |---|---|---|
 | Kode wilayah 2025 (utama) | github.com/cahyadsn/wilayah, file `db/wilayah.sql` (lisensi MIT) | Kepmendagri No 300.2.2-2138 Tahun 2025. Sudah diunduh ke `data/raw/wilayah.sql` dan diubah ke `data/raw/wilayah_2025.csv` dengan `src/convert_wilayah.py` |
 | Peta | github.com/cahyadsn/wilayah, file `db/wilayah_level_1_2.sql` (lisensi MIT) | batas 38 provinsi dan 514 kabupaten/kota, sudah diubah ke `data/geo/provinsi.geojson` dan `data/geo/kabupaten.geojson` dengan `src/convert_geo.py`. Kodenya cocok 100 persen dengan dataset |
-| Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 10 |
+| Bonus (opsional) | GeoNames (geonames.org, CC-BY 4.0) | Hanya kalau ada sisa waktu di hari 4, lihat bagian 9 |
 
 Sumber yang sempat direncanakan sebelumnya (github.com/yonatanyl/KODE-WILAYAH-KEPMENDAGRI-2025) tidak dipakai. Filenya ternyata Excel, bukan CSV, dan datanya dibuat dari hasil OCR dokumen PDF, sehingga nama desanya berisiko mengandung salah ketik.
 
@@ -203,7 +203,7 @@ Ada empat halaman:
 
 ## 7. Tahapan pengerjaan
 
-Pekerjaan dibagi menjadi 10 tahap. Setiap tahap punya penanggung jawab, hasil berupa file, dan syarat selesai. Tahap yang tidak saling bergantung dikerjakan paralel.
+Pekerjaan dibagi menjadi 10 tahap. Setiap tahap punya hasil berupa file dan syarat selesai. Tahap yang tidak saling bergantung dikerjakan paralel.
 
 ### Urutan dan ketergantungan
 
@@ -249,12 +249,11 @@ Langkah:
 1. Clone repo dan buat struktur folder sesuai bagian 5.
 2. Buat `requirements.txt`, lalu setiap anggota memasang library di laptop masing-masing.
 3. Buat `.gitignore` untuk folder cache Python dan checkpoint notebook. File di `data/processed/` dan `models/` tetap di-commit, karena anggota lain membutuhkannya untuk bekerja paralel. Kalau ada file model lebih dari 50 MB, bagikan lewat Google Drive dan tulis tautannya di README.
-4. Isi nama anggota di bagian 8.
-5. P5 menyampaikan judul baru ke dosen dan mengisi kolom algoritma dan dataset di sheet kelompok.
+4. Sampaikan judul baru ke dosen dan mengisi kolom algoritma dan dataset di sheet kelompok.
 
 Selesai jika: semua anggota bisa menjalankan `python -c "import sklearn, pandas, streamlit"` tanpa error.
 
-### Tahap 1. Data bersih (hari 1, P1, dibantu P3)
+### Tahap 1. Data bersih (hari 1)
 
 Langkah:
 1. Sudah selesai: data diunduh ke `data/raw/wilayah.sql` dan diubah menjadi `data/raw/wilayah_2025.csv` dengan `python src/convert_wilayah.py`. Hasil pengecekannya ada di bagian 4.
@@ -269,7 +268,7 @@ Status: **selesai**. Hasilnya:
 - Sebaran per wilayah: Sumatera 25.555, Jawa 25.271, Sulawesi 10.575, Papua 7.355, Kalimantan 7.252, Bali dan Nusa Tenggara 5.321, Maluku 2.416.
 - Nama kembar: 4.250 nama bersih muncul di lebih dari satu provinsi, mencakup 19.771 baris. Paling sering: sidomulyo (98), sidorejo (71), karanganyar (70), mekar jaya (66), sukamaju (65). Ini bahan bagus untuk EDA, sekaligus alasan kenapa split harus per nama unik.
 
-### Tahap 2. EDA (hari 1 sampai 2, P1 dan P4)
+### Tahap 2. EDA (hari 1 sampai 2)
 
 Notebook: `01_eda.ipynb`.
 
@@ -283,7 +282,7 @@ Selesai jika: minimal 4 grafik tersimpan di `reports/figures/`, ditambah ringkas
 
 Status: **selesai** (`notebooks/01_eda.ipynb`). Grafik: `01_jumlah_desa.png`, `01_panjang_nama.png`, `01_nama_kembar.png`, `01_kata_pertama.png`. Ringkasan 7 poin ada di akhir notebook, antara lain: jumlah desa timpang sampai 32 kali lipat, 64 persen nama hanya satu kata, 4.250 nama dipakai di lebih dari satu provinsi, dan kata pertama khas wilayah (sungai, tumbang, nanga di Kalimantan; bonto di Sulawesi; golo di Nusa Tenggara).
 
-### Tahap 3. Klasifikasi (hari 2 sampai 3, P2)
+### Tahap 3. Klasifikasi (hari 2 sampai 3)
 
 Notebook: `02_classification.ipynb`.
 
@@ -298,7 +297,7 @@ Langkah:
 
 Selesai jika: tabel 3 model x 2 target ada, dua file model tersimpan, dan assert split lolos.
 
-Status: **baseline selesai** (`notebooks/02_classification.ipynb`). Langkah 5 (tuning) dan 7 (Random Forest) belum, dilanjutkan P2.
+Status: **baseline selesai** (`notebooks/02_classification.ipynb`). Langkah 5 (tuning) dan 7 (Random Forest) belum.
 
 | Target | Model | Accuracy | Macro-F1 | Top-3 |
 |---|---|---|---|---|
@@ -316,7 +315,7 @@ Status: **baseline selesai** (`notebooks/02_classification.ipynb`). Langkah 5 (t
 - Model yang disimpan untuk kedua target adalah **Logistic Regression**, dilatih ulang dengan seluruh data. Alasannya, selisih macro-F1 dengan model terbaik kecil (0 untuk provinsi, 0,014 untuk wilayah), dan hanya LR yang memberi probabilitas untuk dashboard serta koefisien untuk analisis n-gram khas.
 - File: `models/best_provinsi.joblib` (8,3 MB), `models/best_wilayah.joblib` (1,7 MB), `reports/metrics_baseline.csv`, `reports/figures/02_perbandingan_model.png`.
 
-### Tahap 4. Klastering dan peta (hari 2 sampai 3, P3)
+### Tahap 4. Klastering dan peta (hari 2 sampai 3)
 
 Notebook: `03_clustering.ipynb`.
 
@@ -342,7 +341,7 @@ Temuan utama (bahan "wow" untuk presentasi):
 
 Grafik: `03_pemilihan_k.png`, `03_peta_klaster.png`, `03_peta_klaster_pembanding.png`. Tabel: `reports/metrics_klastering.csv`, `reports/ringkasan_klaster.csv`.
 
-### Tahap 5. N-gram khas dan analisis kesalahan (hari 3, P4)
+### Tahap 5. N-gram khas dan analisis kesalahan (hari 3)
 
 Notebook: `04_error_analysis.ipynb`. Butuh model dari Tahap 3.
 
@@ -367,7 +366,7 @@ Temuan utama:
 
 Grafik: `04_ngram_khas.png`, `04_confusion_wilayah.png`, `04_transmigrasi_provinsi.png`, `04_peta_jejak_jawa.png`.
 
-### Tahap 6. Generator nama desa (hari 2 sampai 3, P4)
+### Tahap 6. Generator nama desa (hari 2 sampai 3)
 
 Kode: `src/generator.py`. Notebook: `05_generator.ipynb`.
 
@@ -388,7 +387,7 @@ Status: **selesai** (`src/generator.py`, `notebooks/05_generator.ipynb`).
 - Kuis "Asli atau Palsu?": 10 nama siap di `kuis_asli_palsu.csv`. Kuis "Manusia vs Mesin": 5 nama di `kuis_manusia_vs_mesin.csv`, tebakan mesin diambil dari prediksi out-of-fold (mesin benar 2 dari 5, wajar karena akurasi provinsi sekitar 40 persen). Ganti `SEED` di notebook untuk set lain.
 - Catatan jujur untuk laporan: nama karangan cenderung memakai pola paling umum di wilayahnya, jadi wajar lebih mudah dikenali daripada nama asli (akurasi nama asli sekitar 65 persen).
 
-### Tahap 7. Dashboard (hari 2 sampai 4, P5)
+### Tahap 7. Dashboard (hari 2 sampai 4)
 
 Kode: `app/streamlit_app.py`.
 
@@ -409,75 +408,47 @@ Status: **selesai, versi pertama**. Keempat halaman berjalan dan sudah diuji (Ap
 
 Tampilan: tema warna kertas peta di `.streamlit/config.toml`, huruf Young Serif (judul dan nama desa) dan Public Sans (teks), dimuat dari Google Fonts, jadi butuh internet saat presentasi (kalau tidak ada, otomatis memakai huruf bawaan).
 
-Yang masih bisa dikerjakan P5: uji dengan 10 nama desa asli dan 3 nama karangan (langkah 4), rapikan teks, dan latihan demo. Peta kabupaten (6,6 MB) butuh beberapa detik saat pertama dibuka.
+Yang masih bisa dikerjakan: uji dengan 10 nama desa asli dan 3 nama karangan (langkah 4), rapikan teks, dan latihan demo. Peta kabupaten (6,6 MB) butuh beberapa detik saat pertama dibuka.
 
-### Tahap 8. Laporan (hari 1 sampai 4, P5, semua anggota menyumbang)
+### Tahap 8. Laporan (hari 1 sampai 4, semua anggota)
 
 Langkah:
 1. Hari 1: buat kerangka laporan mengikuti 7 tahap TBP.
-2. Setiap penanggung jawab tahap menulis bagiannya sendiri: metode, hasil, dan grafik dari `reports/figures/`.
-3. P5 menyatukan, merapikan bahasa, dan menambahkan bagian keterbatasan dan saran pengembangan (termasuk Apriori dan versi dunia).
+2. Tulis metode, hasil, dan grafik dari `reports/figures/` untuk tiap tahap.
+3. Satukan, rapikan bahasa, dan tambahkan bagian keterbatasan dan saran pengembangan (termasuk Apriori dan versi dunia).
 
 Selesai jika: semua bagian terisi, semua grafik punya keterangan, dan daftar pustaka lengkap.
 
 ### Tahap 9. Presentasi dan gladi (hari 5, semua anggota)
 
 Langkah:
-1. Susun slide. Setiap anggota membuat slide bagiannya sendiri.
+1. Susun slide.
 2. Siapkan dashboard di satu laptop yang dipakai untuk demo. Siapkan juga cadangan berupa rekaman layar kalau demo gagal.
 3. Gladi lengkap: alur presentasi, demo tebak nama, dan kedua kuis.
 4. Latihan tanya jawab: saling menguji pertanyaan yang kemungkinan ditanyakan dosen, misalnya "kan bisa dicari di Google?", "kenapa pakai n-gram karakter?", dan "kenapa split per nama unik?".
 
-Selesai jika: gladi berjalan lancar dalam batas waktu, dan setiap anggota bisa menjawab pertanyaan tentang bagiannya.
+Selesai jika: gladi berjalan lancar dalam batas waktu, dan setiap anggota bisa menjawab pertanyaan tentang seluruh bagian proyek.
 
-## 8. Pembagian tugas
+## 8. Jadwal 5 hari
 
-| Peran | Tanggung jawab utama |
+Semua anggota mengerjakan dan memahami semua bagian; tidak ada pembagian peran.
+
+| Hari | Kegiatan |
 |---|---|
-| P1 Data | unduh dan cek data, `clean.py`, EDA, README, reproduksibilitas |
-| P2 Klasifikasi | 3 model x 2 target (RF opsional), tuning, simpan model |
-| P3 Klastering dan Peta | `regions.py`, data batas wilayah untuk peta, klaster kabupaten, ARI, peta |
-| P4 Analisis dan Generator | literatur, n-gram khas, analisis kesalahan, transmigrasi, generator nama desa, bahan kuis |
-| P5 Dashboard dan Laporan | Streamlit, kerangka dan penulisan laporan, konsultasi ke dosen |
+| 1 | `clean.py` dan parquet bersih, setup repo, baseline NB, cek data batas wilayah dan `regions.py`, literatur dan EDA, kerangka laporan, konsultasi dosen |
+| 2 | finalisasi data dan EDA nama kembar, 3 model x 2 target, klaster kabupaten, n-gram khas per daerah, mulai generator, kerangka Streamlit |
+| 3 | tuning, top-3, simpan model, peta klaster dan ARI, analisis kesalahan dan transmigrasi, uji generator ke classifier, halaman tebak nama, README |
+| 4 | cek reproduksibilitas, interpretasi hasil, rangkum temuan, siapkan 2 kuis, halaman peta, fakta, dan generator, tulis laporan |
+| 5 | slide, latihan tanya jawab, gladi demo dan kuis, finalisasi laporan |
 
-Isi nama anggota di setiap peran:
-
-- P1:
-- P2:
-- P3:
-- P4:
-- P5:
-
-### Siapa menguasai apa untuk presentasi
-
-Tidak semua anggota harus menguasai semuanya.
-
-- **Semua anggota:** paham gambaran besar proyek, alasan memakai n-gram karakter, dan jawaban untuk pertanyaan "kan bisa dicari di Google?" (bagian 2).
-- **Masing-masing:** menguasai bagiannya sendiri secara mendalam.
-  - P1: data, preprocessing, dan penanganan nama kembar.
-  - P2: cara kerja dan alasan memilih NB, LR, dan SVM, serta arti tiap metrik.
-  - P3: cara kerja K-Means dan Hierarchical, silhouette, dan ARI.
-  - P4: analisis kesalahan, transmigrasi, dan cara kerja generator.
-  - P5: alur dashboard dan jalannya demo.
-
-## 9. Jadwal 5 hari
-
-| Hari | P1 Data | P2 Klasifikasi | P3 Klastering dan Peta | P4 Analisis dan Generator | P5 Dashboard dan Laporan |
-|---|---|---|---|---|---|
-| 1 | `clean.py`, parquet bersih | setup repo, baseline NB | cek data batas wilayah, `regions.py` | literatur dan EDA | kerangka laporan, konsultasi dosen |
-| 2 | finalisasi data, EDA nama kembar | 3 model x 2 target | klaster kabupaten | n-gram khas per daerah, mulai generator | kerangka Streamlit |
-| 3 | bantu tim, README | tuning, top-3, simpan model, RF kalau sempat | peta klaster, ARI | analisis kesalahan, transmigrasi, uji generator ke classifier | halaman tebak nama |
-| 4 | cek reproduksibilitas | interpretasi hasil | interpretasi hasil | rangkum temuan, siapkan 2 kuis | halaman peta, fakta, generator, tulis laporan |
-| 5 | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | slide, latihan tanya jawab | gladi demo dan kuis, finalisasi laporan |
-
-## 10. Bonus opsional (hanya kalau hari 4 longgar)
+## 9. Bonus opsional (hanya kalau hari 4 longgar)
 
 GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara memakainya:
 
 1. **Uji generalisasi.** Ambil nama tempat Indonesia dari GeoNames yang tidak ada di data Kemendagri, lalu cek apakah model tetap bisa menebak provinsinya dengan benar.
 2. **Versi dunia.** Tebak negara dari nama kota memakai subset `cities1000`, dengan kolom `asciiname` dan `country code`. Batasi ke 30 sampai 50 negara.
 
-## 11. Risiko dan cara mengatasinya
+## 10. Risiko dan cara mengatasinya
 
 | Risiko | Cara mengatasi |
 |---|---|
@@ -486,14 +457,14 @@ GeoNames (geonames.org) berisi nama tempat dari seluruh dunia. Ada dua cara mema
 | Kelas tidak seimbang | pakai macro-F1 dan class weight |
 | Batas wilayah kabupaten tidak bisa dipakai | cari GeoJSON lain, atau turun ke peta tingkat provinsi |
 
-## 12. Aturan kerja bersama
+## 11. Aturan kerja bersama
 
 - **Fungsi bersama** hanya ditulis di `src/`. Notebook dan app mengimpor dari sana, tidak menyalin kode.
 - **Data mentah** di `data/raw/` jangan diubah. Hasil olahan disimpan di `data/processed/`.
 - **Notebook** harus bisa dijalankan dari awal sampai akhir (Restart and Run All) tanpa error sebelum di-commit.
 - **Commit** kecil-kecil, dengan pesan yang jelas tentang apa yang diubah.
 
-## 13. Checklist selesai
+## 12. Checklist selesai
 
 - [ ] Notebook 01 sampai 05 berjalan berurutan dari clone baru tanpa error.
 - [ ] Ada assert di notebook 02 yang memastikan tidak ada nama yang muncul di data latih dan uji sekaligus.

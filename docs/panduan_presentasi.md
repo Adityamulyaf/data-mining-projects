@@ -195,20 +195,20 @@ Keterbatasan: Bali tidak membentuk klaster sendiri; sebagian besar masuk klaster
 
 Orde 3 dipilih sebagai titik tengah: orde 2 kreatif tapi kurang khas, orde 4 khas tapi sering menyalin nama yang sudah ada. Dari 350 nama karangan (50 per wilayah), 71,7% dikenali sesuai wilayahnya. Contoh: Cikayung (Jawa), Lubuk Simodo (Sumatera), Lintai Hilir (Kalimantan), Wugunggunome (Papua).
 
-## 6. Skrip presentasi dan pembagian peran
+## 6. Skrip presentasi
 
-Presentasi mengikuti 7 tahap TBP dan dibagi ke 5 peran sesuai `PLAN.md`; isi nama anggota di kolom pertama. Durasi per bagian hanya usulan, sesuaikan dengan batas waktu dari dosen.
+Presentasi mengikuti 7 tahap TBP. Tidak ada pembagian peran: setiap anggota harus paham semua bagian dan siap ditanya tentang bagian mana pun. Kalau tetap perlu bergantian bicara, urutannya bebas. Durasi per bagian hanya usulan, sesuaikan dengan batas waktu dari dosen.
 
-| Pembicara | Bagian | Durasi | Yang dibawakan | Gambar pendukung |
-| --- | --- | --- | --- | --- |
-| P5 Dashboard dan Laporan | Pembuka dan rumusan masalah | 2 menit | Kalimat pembuka (bagian 1), 5 pertanyaan penelitian, kuadran novelty, jawaban "kan bisa di-Google?" | - |
-| P1 Data | Data dan preprocessing | 2 menit | Sumber data, aturan pembersihan, nama kembar, kenapa split per nama unik | `01_jumlah_desa.png`, `01_nama_kembar.png` |
-| P2 Klasifikasi | Modeling dan evaluasi klasifikasi | 3 menit | TF-IDF n-gram, 3 model, tabel hasil, kenapa LR dipilih | `02_perbandingan_model.png` |
-| P4 Analisis dan Generator | N-gram khas dan jejak transmigrasi | 3 menit | N-gram khas, confusion matrix, peta jejak Jawa, Kota Metro 45,5% | `laporan_ngram.png`, `laporan_jejak_jawa.png` |
-| P3 Klastering dan Peta | Klastering | 2 menit | Cara K-Means dan Ward, pemilihan k, ARI, peta 7 klaster (Sunda vs Jawa) | `03_pemilihan_k.png`, `03_peta_klaster.png` |
-| P4 Analisis dan Generator | Generator | 1 menit | Rantai Markov orde 3, 71,7% dikenali | `05_generator_dikenali.png` |
-| P5 Dashboard dan Laporan | Demo dan kuis | 4 menit | Demo tebak nama, kuis Manusia vs Mesin, kuis Asli atau Palsu | dashboard langsung |
-| P5 Dashboard dan Laporan | Penutup | 1 menit | Kesimpulan dan saran | - |
+| Bagian | Durasi | Yang dibawakan | Gambar pendukung |
+| --- | --- | --- | --- |
+| Pembuka dan rumusan masalah | 2 menit | Kalimat pembuka (bagian 1), 5 pertanyaan penelitian, kuadran novelty, jawaban "kan bisa di-Google?" | - |
+| Data dan preprocessing | 2 menit | Sumber data, aturan pembersihan, nama kembar, kenapa split per nama unik | `01_jumlah_desa.png`, `01_nama_kembar.png` |
+| Modeling dan evaluasi klasifikasi | 3 menit | TF-IDF n-gram, 3 model, tabel hasil, kenapa LR dipilih | `02_perbandingan_model.png` |
+| N-gram khas dan jejak transmigrasi | 3 menit | N-gram khas, confusion matrix, peta jejak Jawa, Kota Metro 45,5% | `laporan_ngram.png`, `laporan_jejak_jawa.png` |
+| Klastering | 2 menit | Cara K-Means dan Ward, pemilihan k, ARI, peta 7 klaster (Sunda vs Jawa) | `03_pemilihan_k.png`, `03_peta_klaster.png` |
+| Generator | 1 menit | Rantai Markov orde 3, 71,7% dikenali | `05_generator_dikenali.png` |
+| Demo dan kuis | 4 menit | Demo tebak nama, kuis Manusia vs Mesin, kuis Asli atau Palsu | dashboard langsung |
+| Penutup | 1 menit | Kesimpulan dan saran | - |
 
 **Contoh narasi per bagian (bisa dibaca hampir apa adanya):**
 
@@ -231,78 +231,78 @@ Kuis Asli atau Palsu: asli = Bakung Raya, Cikarae Thoyyibah, Rante Pasele, Ile G
 - [ ] Buka jejaknama.streamlit.app sejak awal (aplikasi Streamlit gratis bisa "tidur" dan butuh waktu bangun)
 - [ ] Siapkan cadangan: jalankan `streamlit run app/streamlit_app.py` di laptop
 - [ ] Coba 3 nama desa contoh yang hasilnya bagus, untuk jaga-jaga kalau nama dari penonton tebakannya salah
-- [ ] Setiap anggota sudah membaca bagian 2 dan bagian 7
+- [ ] Setiap anggota sudah memahami bagian 2 sampai 7 seluruhnya, karena pertanyaan bisa diarahkan ke siapa saja
 - [ ] Gladi lengkap sekali dengan timer
 
 ## 7. Bank pertanyaan dan jawaban
 
-Pola menjawab: jawab langsung dalam satu kalimat, beri satu angka atau contoh, lalu berhenti. Kolom "Penjawab" adalah saran siapa yang paling siap.
+Pola menjawab: jawab langsung dalam satu kalimat, beri satu angka atau contoh, lalu berhenti. Semua anggota harus bisa menjawab semua pertanyaan di bawah.
 
 ### Tentang topik dan tujuan
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Kan lokasi desa bisa dicari di Google? | Pertanyaan kami bukan "di mana desa X", tapi "informasi budaya apa yang tersimpan di nama desa". Model adalah alat untuk membedah pola. Selain itu model bisa menebak nama yang tidak ada di database (nama dusun, nama di arsip kolonial, desa pemekaran baru), dan menemukan jejak sejarah seperti transmigrasi. | Semua |
-| Apa kegunaan praktisnya? | Tiga: menebak asal nama yang tidak ada di database, memeriksa kualitas data (desa yang namanya sangat tidak cocok dengan provinsinya ditandai sebagai kandidat salah kode), dan bahan kajian sejarah sosial dan bahasa. | P4 |
-| Apa kebaruannya? | Kuadran metode lama untuk masalah baru. Metodenya klasik, tapi kami belum menemukan studi klasifikasi atau klastering nama desa Indonesia. Studi terdekat hanya identifikasi bahasa daerah dari kalimat utuh (Sujaini dan Putra 2024, NusaX). | P5 |
-| Ada penelitian sejenis? | Ada untuk nama orang: Ambekar dkk. (KDD 2009) menebak etnis dari nama, Ye dkk. (CIKM 2017) NamePrism menebak kebangsaan. Untuk nama tempat: Fize dkk. (2021) memakai n-gram karakter untuk geocoding toponim. | P4 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Kan lokasi desa bisa dicari di Google? | Pertanyaan kami bukan "di mana desa X", tapi "informasi budaya apa yang tersimpan di nama desa". Model adalah alat untuk membedah pola. Selain itu model bisa menebak nama yang tidak ada di database (nama dusun, nama di arsip kolonial, desa pemekaran baru), dan menemukan jejak sejarah seperti transmigrasi. |
+| Apa kegunaan praktisnya? | Tiga: menebak asal nama yang tidak ada di database, memeriksa kualitas data (desa yang namanya sangat tidak cocok dengan provinsinya ditandai sebagai kandidat salah kode), dan bahan kajian sejarah sosial dan bahasa. |
+| Apa kebaruannya? | Kuadran metode lama untuk masalah baru. Metodenya klasik, tapi kami belum menemukan studi klasifikasi atau klastering nama desa Indonesia. Studi terdekat hanya identifikasi bahasa daerah dari kalimat utuh (Sujaini dan Putra 2024, NusaX). |
+| Ada penelitian sejenis? | Ada untuk nama orang: Ambekar dkk. (KDD 2009) menebak etnis dari nama, Ye dkk. (CIKM 2017) NamePrism menebak kebangsaan. Untuk nama tempat: Fize dkk. (2021) memakai n-gram karakter untuk geocoding toponim. |
 
 ### Tentang data dan preprocessing
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Datanya dari mana, bisa dipercaya? | Kode wilayah Kepmendagri No 300.2.2-2138 Tahun 2025 dari repo GitHub cahyadsn/wilayah (lisensi MIT). Jumlahnya cocok dengan angka resmi: 38 provinsi, 514 kabupaten, 83.762 desa. Kami sengaja tidak memakai sumber lain yang berasal dari OCR PDF karena berisiko salah ketik. | P1 |
-| Kenapa 83.762 jadi 83.758? | 4 nama berupa singkatan huruf kapital (OP, MKCM, WKO, RD. PJKA) dibuang karena bukan nama sungguhan. | P1 |
-| Kenapa kata seperti "gampong" atau "huta" tidak dibuang? | Justru itu petunjuk budaya: 82 desa berawalan Gampong semuanya di Aceh, 99 desa Huta semuanya di Sumatera Utara. | P1 |
-| Kenapa angka romawi dibuang? | Angka romawi (sekitar 1.270 nama, misal "Sukamaju II") adalah penanda pemekaran administratif, bukan bagian budaya nama. | P1 |
-| Kenapa tanda petik dipertahankan? | Tanda petik seperti "kandua'" dan "ba'u" adalah ciri bahasa di Sulawesi dan Aceh. | P1 |
-| Data timpang, bagaimana menanganinya? | Jawa Tengah punya 8.563 desa, DKI hanya 267. Kami pakai class\_weight balanced pada LR dan SVM, dan melaporkan macro-F1 yang menilai semua provinsi setara. | P2 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Datanya dari mana, bisa dipercaya? | Kode wilayah Kepmendagri No 300.2.2-2138 Tahun 2025 dari repo GitHub cahyadsn/wilayah (lisensi MIT). Jumlahnya cocok dengan angka resmi: 38 provinsi, 514 kabupaten, 83.762 desa. Kami sengaja tidak memakai sumber lain yang berasal dari OCR PDF karena berisiko salah ketik. |
+| Kenapa 83.762 jadi 83.758? | 4 nama berupa singkatan huruf kapital (OP, MKCM, WKO, RD. PJKA) dibuang karena bukan nama sungguhan. |
+| Kenapa kata seperti "gampong" atau "huta" tidak dibuang? | Justru itu petunjuk budaya: 82 desa berawalan Gampong semuanya di Aceh, 99 desa Huta semuanya di Sumatera Utara. |
+| Kenapa angka romawi dibuang? | Angka romawi (sekitar 1.270 nama, misal "Sukamaju II") adalah penanda pemekaran administratif, bukan bagian budaya nama. |
+| Kenapa tanda petik dipertahankan? | Tanda petik seperti "kandua'" dan "ba'u" adalah ciri bahasa di Sulawesi dan Aceh. |
+| Data timpang, bagaimana menanganinya? | Jawa Tengah punya 8.563 desa, DKI hanya 267. Kami pakai class\_weight balanced pada LR dan SVM, dan melaporkan macro-F1 yang menilai semua provinsi setara. |
 
 ### Tentang metode klasifikasi
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Kenapa n-gram karakter, bukan kata? | 63,8% nama desa hanya satu kata, dan ciri budaya sering ada di dalam kata (Karang-anyar, Suko-rejo). N-gram karakter menangkap awalan, akhiran, dan potongan khas, serta tetap bisa membaca nama yang belum pernah dilihat. | P2 |
-| Kenapa n-gram 2 sampai 4? | Satu huruf terlalu umum, lebih dari 4 huruf terlalu jarang muncul sehingga model jadi menghafal. 2-4 menangkap pola seperti "ci", "eu", "rejo", "blan". | P2 |
-| Apa bedanya TF-IDF dengan hitungan biasa? | TF-IDF menurunkan bobot potongan yang ada di hampir semua nama (misal "an") dan menaikkan bobot yang langka dan khas (misal "blan"). | P2 |
-| Kenapa split per nama unik? | "Sidomulyo" ada di 98 desa. Kalau dibagi acak per baris, nama yang sama ada di data latih dan data uji, model cukup menghafal dan akurasi jadi palsu (data leakage). Dengan GroupShuffleSplit, tidak ada nama yang muncul di keduanya. | P2 |
-| Kenapa memilih NB, LR, SVM? | NB baseline klasik teks yang cepat, LR bisa ditafsirkan dan memberi probabilitas, SVM linear biasanya terkuat untuk fitur teks berdimensi tinggi. Ketiganya mewakili pendekatan probabilistik, linear-probabilistik, dan margin. | P2 |
-| Kenapa tidak Random Forest atau deep learning? | Random Forest berat untuk 25 ribu fitur jarang dan biasanya kalah dari model linear di teks. Deep learning (char-RNN) kami tulis sebagai saran pengembangan; fokus kami interpretasi, dan model linear memberi koefisien yang bisa dibaca. | P2 |
-| NB akurasinya paling tinggi untuk provinsi, kenapa pilih LR? | Selisihnya kecil (0,419 vs 0,401), sedangkan macro-F1 LR justru tertinggi (0,330). LR juga satu-satunya yang memberi probabilitas dan koefisien sekaligus, dibutuhkan dashboard dan analisis n-gram. | P2 |
-| Akurasi 40% kan rendah? | Ada 38 kelas, tebakan acak hanya 2,6%; 40% itu 15 kali lipat. Banyak provinsi berbudaya sama (DIY-Jateng, Banten-Jabar) yang memang mustahil dibedakan dari nama. Di tingkat wilayah akurasinya 68% dan top-3 90%. | P2 |
-| Apa itu top-3 accuracy dan kenapa relevan? | Persen kasus jawaban benar ada di 3 tebakan teratas. Relevan karena provinsi bertetangga sering mirip, jadi tebakan "Jateng, DIY, Jatim" untuk desa DIY tetap informatif. | P2 |
-| Sudah tuning hyperparameter? | Ya, parameter akhir: NB alpha=0,1; LR C=5; SVM C=0,5. | P2 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Kenapa n-gram karakter, bukan kata? | 63,8% nama desa hanya satu kata, dan ciri budaya sering ada di dalam kata (Karang-anyar, Suko-rejo). N-gram karakter menangkap awalan, akhiran, dan potongan khas, serta tetap bisa membaca nama yang belum pernah dilihat. |
+| Kenapa n-gram 2 sampai 4? | Satu huruf terlalu umum, lebih dari 4 huruf terlalu jarang muncul sehingga model jadi menghafal. 2-4 menangkap pola seperti "ci", "eu", "rejo", "blan". |
+| Apa bedanya TF-IDF dengan hitungan biasa? | TF-IDF menurunkan bobot potongan yang ada di hampir semua nama (misal "an") dan menaikkan bobot yang langka dan khas (misal "blan"). |
+| Kenapa split per nama unik? | "Sidomulyo" ada di 98 desa. Kalau dibagi acak per baris, nama yang sama ada di data latih dan data uji, model cukup menghafal dan akurasi jadi palsu (data leakage). Dengan GroupShuffleSplit, tidak ada nama yang muncul di keduanya. |
+| Kenapa memilih NB, LR, SVM? | NB baseline klasik teks yang cepat, LR bisa ditafsirkan dan memberi probabilitas, SVM linear biasanya terkuat untuk fitur teks berdimensi tinggi. Ketiganya mewakili pendekatan probabilistik, linear-probabilistik, dan margin. |
+| Kenapa tidak Random Forest atau deep learning? | Random Forest berat untuk 25 ribu fitur jarang dan biasanya kalah dari model linear di teks. Deep learning (char-RNN) kami tulis sebagai saran pengembangan; fokus kami interpretasi, dan model linear memberi koefisien yang bisa dibaca. |
+| NB akurasinya paling tinggi untuk provinsi, kenapa pilih LR? | Selisihnya kecil (0,419 vs 0,401), sedangkan macro-F1 LR justru tertinggi (0,330). LR juga satu-satunya yang memberi probabilitas dan koefisien sekaligus, dibutuhkan dashboard dan analisis n-gram. |
+| Akurasi 40% kan rendah? | Ada 38 kelas, tebakan acak hanya 2,6%; 40% itu 15 kali lipat. Banyak provinsi berbudaya sama (DIY-Jateng, Banten-Jabar) yang memang mustahil dibedakan dari nama. Di tingkat wilayah akurasinya 68% dan top-3 90%. |
+| Apa itu top-3 accuracy dan kenapa relevan? | Persen kasus jawaban benar ada di 3 tebakan teratas. Relevan karena provinsi bertetangga sering mirip, jadi tebakan "Jateng, DIY, Jatim" untuk desa DIY tetap informatif. |
+| Sudah tuning hyperparameter? | Ya, parameter akhir: NB alpha=0,1; LR C=5; SVM C=0,5. |
 
 ### Tentang klastering
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Apa yang dikelompokkan? | 514 kabupaten. Tiap kabupaten diwakili rata-rata vektor TF-IDF semua nama desanya, lalu diperkecil ke 20 dimensi dengan TruncatedSVD. | P3 |
-| Kenapa pakai SVD? | Vektor asli sekitar 25 ribu dimensi; jarak di dimensi setinggi itu kurang bermakna dan perhitungannya berat. 20 komponen menyimpan pola utama. | P3 |
-| Kenapa k=7, padahal silhouette tertinggi di k=13? | Selisihnya kecil (0,267 vs 0,247). k=7 puncak lokal pertama di kedua metode, bisa ditafsirkan per klaster, dan sama dengan jumlah wilayah besar sehingga bisa dibandingkan dengan ARI. | P3 |
-| Silhouette 0,25 kan rendah? | Ya, dan itu temuan: nama desa berubah bertahap antar daerah tetangga, tidak ada batas tajam seperti garis provinsi. | P3 |
-| Apa arti ARI 0,42? | Klaster jauh lebih mirip wilayah resmi daripada acak (0), tapi tidak identik (1). Perbedaannya bermakna: klaster mengikuti batas bahasa dan suku, misal Jawa terbelah Sunda dan Jawa. | P3 |
-| K-Means vs Ward, mana lebih baik? | K-Means silhouette-nya lebih tinggi (0,247 vs 0,222) sehingga jadi hasil utama; Ward sedikit lebih mirip wilayah resmi (ARI 0,456). Polanya mirip. | P3 |
-| Nama klaster dari mana? | Diberi tim setelah membaca isi tiap klaster (provinsi terbanyak, n-gram menonjol, nama tersering). Model tidak pernah melihat label. | P3 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Apa yang dikelompokkan? | 514 kabupaten. Tiap kabupaten diwakili rata-rata vektor TF-IDF semua nama desanya, lalu diperkecil ke 20 dimensi dengan TruncatedSVD. |
+| Kenapa pakai SVD? | Vektor asli sekitar 25 ribu dimensi; jarak di dimensi setinggi itu kurang bermakna dan perhitungannya berat. 20 komponen menyimpan pola utama. |
+| Kenapa k=7, padahal silhouette tertinggi di k=13? | Selisihnya kecil (0,267 vs 0,247). k=7 puncak lokal pertama di kedua metode, bisa ditafsirkan per klaster, dan sama dengan jumlah wilayah besar sehingga bisa dibandingkan dengan ARI. |
+| Silhouette 0,25 kan rendah? | Ya, dan itu temuan: nama desa berubah bertahap antar daerah tetangga, tidak ada batas tajam seperti garis provinsi. |
+| Apa arti ARI 0,42? | Klaster jauh lebih mirip wilayah resmi daripada acak (0), tapi tidak identik (1). Perbedaannya bermakna: klaster mengikuti batas bahasa dan suku, misal Jawa terbelah Sunda dan Jawa. |
+| K-Means vs Ward, mana lebih baik? | K-Means silhouette-nya lebih tinggi (0,247 vs 0,222) sehingga jadi hasil utama; Ward sedikit lebih mirip wilayah resmi (ARI 0,456). Polanya mirip. |
+| Nama klaster dari mana? | Diberi tim setelah membaca isi tiap klaster (provinsi terbanyak, n-gram menonjol, nama tersering). Model tidak pernah melihat label. |
 
 ### Tentang analisis kesalahan dan generator
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Bagaimana tahu itu jejak transmigrasi, bukan kebetulan? | Tiga bukti: angka di provinsi tujuan transmigrasi (8,4%) hampir dua kali provinsi lain (4,3%); puncaknya di Metro dan Pringsewu, lokasi kolonisasi 1905; dan ada 96 desa luar Jawa yang memakai nama kabupaten di Jawa, 41 di Lampung. | P4 |
-| Kenapa pakai prediksi out-of-fold? | Model akhir sudah melihat semua desa, jadi tebakannya ke data itu tidak jujur. OOF memastikan tiap desa ditebak model yang belum pernah melihat namanya. | P4 |
-| Bali juga sering ditebak Jawa, bagaimana? | Betul (17,9%), padahal Bali bukan tujuan transmigrasi. Itu karena kedekatan bahasa dan budaya Jawa-Bali. Kami sebutkan sebagai catatan di laporan. | P4 |
-| Ditemukan kesalahan kode wilayah? | Hanya 62 kandidat (0,07%), dan setelah dicek sebagian besar nama pendek yang kebetulan mirip daerah lain. Jadi tidak ada tanda jelas kesalahan kode di data 2025. | P4 |
-| Bagaimana generator bekerja? | Rantai Markov orde 3: dari semua nama di satu wilayah dihitung huruf apa yang biasanya muncul setelah tiap 3 huruf, lalu nama dibangun huruf demi huruf sampai tanda akhir. Nama yang sudah ada di data dibuang. | P4 |
-| Kenapa orde 3? | Orde 2: 90,5% nama baru tapi hanya 55% dikenali. Orde 4: 74,3% dikenali tapi hanya 69% baru. Orde 3 titik tengah (85,5% baru, 72,3% dikenali). | P4 |
-| 71,7% dikenali, berarti generator bagus? | Artinya ciri nama per daerah cukup kuat untuk ditiru. Tapi perlu dibaca hati-hati: generator memakai pola paling umum di wilayahnya, jadi wajar lebih mudah dikenali daripada nama asli. | P4 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Bagaimana tahu itu jejak transmigrasi, bukan kebetulan? | Tiga bukti: angka di provinsi tujuan transmigrasi (8,4%) hampir dua kali provinsi lain (4,3%); puncaknya di Metro dan Pringsewu, lokasi kolonisasi 1905; dan ada 96 desa luar Jawa yang memakai nama kabupaten di Jawa, 41 di Lampung. |
+| Kenapa pakai prediksi out-of-fold? | Model akhir sudah melihat semua desa, jadi tebakannya ke data itu tidak jujur. OOF memastikan tiap desa ditebak model yang belum pernah melihat namanya. |
+| Bali juga sering ditebak Jawa, bagaimana? | Betul (17,9%), padahal Bali bukan tujuan transmigrasi. Itu karena kedekatan bahasa dan budaya Jawa-Bali. Kami sebutkan sebagai catatan di laporan. |
+| Ditemukan kesalahan kode wilayah? | Hanya 62 kandidat (0,07%), dan setelah dicek sebagian besar nama pendek yang kebetulan mirip daerah lain. Jadi tidak ada tanda jelas kesalahan kode di data 2025. |
+| Bagaimana generator bekerja? | Rantai Markov orde 3: dari semua nama di satu wilayah dihitung huruf apa yang biasanya muncul setelah tiap 3 huruf, lalu nama dibangun huruf demi huruf sampai tanda akhir. Nama yang sudah ada di data dibuang. |
+| Kenapa orde 3? | Orde 2: 90,5% nama baru tapi hanya 55% dikenali. Orde 4: 74,3% dikenali tapi hanya 69% baru. Orde 3 titik tengah (85,5% baru, 72,3% dikenali). |
+| 71,7% dikenali, berarti generator bagus? | Artinya ciri nama per daerah cukup kuat untuk ditiru. Tapi perlu dibaca hati-hati: generator memakai pola paling umum di wilayahnya, jadi wajar lebih mudah dikenali daripada nama asli. |
 
 ### Tentang keterbatasan
 
-| Pertanyaan | Jawaban yang disarankan | Penjawab |
-| --- | --- | --- |
-| Apa keterbatasan penelitian ini? | Provinsi pemekaran berbudaya sama sulit dibedakan; pemilihan k sebagian pertimbangan praktis; Bali tidak membentuk klaster sendiri; dugaan soal desa transmigrasi baru yang bernama Indonesia umum belum diuji. | P5 |
-| Apa saran pengembangannya? | Aturan asosiasi (Apriori/FP-Growth) pada kata penyusun nama, misal "sido" dengan "mulyo"; model jaringan saraf tingkat karakter; data GeoNames untuk menebak negara dari nama kota di seluruh dunia. | P5 |
-| Kenapa Apriori tidak dikerjakan? | Keterbatasan waktu 5 hari; fokus kami ke klasifikasi, klastering, dan generator. Apriori jadi saran pengembangan. | P5 |
+| Pertanyaan | Jawaban yang disarankan |
+| --- | --- |
+| Apa keterbatasan penelitian ini? | Provinsi pemekaran berbudaya sama sulit dibedakan; pemilihan k sebagian pertimbangan praktis; Bali tidak membentuk klaster sendiri; dugaan soal desa transmigrasi baru yang bernama Indonesia umum belum diuji. |
+| Apa saran pengembangannya? | Aturan asosiasi (Apriori/FP-Growth) pada kata penyusun nama, misal "sido" dengan "mulyo"; model jaringan saraf tingkat karakter; data GeoNames untuk menebak negara dari nama kota di seluruh dunia. |
+| Kenapa Apriori tidak dikerjakan? | Keterbatasan waktu 5 hari; fokus kami ke klasifikasi, klastering, dan generator. Apriori jadi saran pengembangan. |
 
-**Kalau ditanya sesuatu yang tidak tahu:** jawab jujur, "Itu belum kami uji, tapi dugaan kami ...", atau oper ke anggota yang memegang bagian itu. Jangan mengarang angka.
+**Kalau ditanya sesuatu yang tidak tahu:** jawab jujur, "Itu belum kami uji, tapi dugaan kami ...", atau minta anggota lain melengkapi. Jangan mengarang angka.
